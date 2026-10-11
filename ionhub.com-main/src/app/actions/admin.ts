@@ -152,3 +152,71 @@ export async function adminUpdateSubscriptionPlan(planId: string, updates: Recor
     return { error: err instanceof Error ? err.message : 'Failed to update subscription plan' };
   }
 }
+
+export async function adminCreateWorker(data: {
+  fullName: string;
+  email: string;
+  phone: string;
+  password: string;
+}) {
+  try {
+    await verifyAdmin();
+
+    const fullName = data.fullName?.trim();
+    const email = data.email?.toLowerCase().trim();
+    const phone = data.phone?.trim();
+    const password = data.password?.trim();
+
+    if (!fullName || !email || !phone || !password) {
+      return { error: 'All fields are required.' };
+    }
+
+    if (password.length < 6) {
+      return { error: 'Worker password must be at least 6 characters.' };
+    }
+
+    const existing = await db.getProfileByEmail(email);
+    if (existing) {
+      return { error: 'An account with this email already exists.' };
+    }
+
+    const id = `p-worker-${Date.now()}`;
+    const newWorker = await db.createProfile({
+      id,
+      auth_user_id: `worker-auth-${Date.now()}`,
+      full_name: fullName,
+      email,
+      phone,
+      role: 'worker',
+      password,
+      avatar_url: null,
+    });
+
+    revalidatePath('/admin');
+    revalidatePath('/admin/workers');
+    revalidatePath('/admin/bookings');
+    return { success: true, worker: newWorker };
+  } catch (err: unknown) {
+    return { error: err instanceof Error ? err.message : 'Failed to create worker' };
+  }
+}
+
+export async function adminAssignWorker(bookingId: string, workerId: string) {
+  try {
+    await verifyAdmin();
+
+    const worker = await db.getProfileById(workerId);
+    if (!worker) {
+      return { error: 'Selected specialist worker could not be found.' };
+    }
+
+    const updated = await db.assignWorkerToBooking(bookingId, workerId, worker.full_name);
+    revalidatePath('/admin');
+    revalidatePath('/admin/bookings');
+    revalidatePath('/worker');
+    return { success: true, booking: updated };
+  } catch (err: unknown) {
+    return { error: err instanceof Error ? err.message : 'Failed to assign worker' };
+  }
+}
+

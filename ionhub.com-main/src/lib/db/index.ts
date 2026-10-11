@@ -109,14 +109,30 @@ export const db = {
 
   // Services
   async getProfiles(): Promise<UserProfile[]> {
+    let supabaseProfiles: UserProfile[] = [];
     if (isSupabaseConfigured()) {
-      const supabase = await createServerSupabaseClient();
+      const adminClient = createAdminSupabaseClient();
+      const userClient = await createServerSupabaseClient();
+      const supabase = adminClient || userClient;
       if (supabase) {
-        const { data, error } = await supabase.from('profiles').select('*').order('created_at', { ascending: false });
-        if (!error && data) return data as UserProfile[];
+        try {
+          const { data, error } = await supabase.from('profiles').select('*').order('created_at', { ascending: false });
+          if (!error && data) supabaseProfiles = data as UserProfile[];
+        } catch {}
       }
     }
-    return localStore.getProfiles();
+    const localProfiles = localStore.getProfiles();
+    if (supabaseProfiles.length > 0) {
+      const existingEmails = new Set(supabaseProfiles.map((p) => p.email.toLowerCase()));
+      const combined = [...supabaseProfiles];
+      for (const lp of localProfiles) {
+        if (!existingEmails.has(lp.email.toLowerCase())) {
+          combined.push(lp);
+        }
+      }
+      return combined;
+    }
+    return localProfiles;
   },
 
   async getServiceById(id: string): Promise<Service | null> {
@@ -379,17 +395,35 @@ export const db = {
 
   // Bookings
   async getBookings(): Promise<Booking[]> {
+    let supabaseBookings: Booking[] = [];
     if (isSupabaseConfigured()) {
-      const supabase = await createServerSupabaseClient();
+      const adminClient = createAdminSupabaseClient();
+      const userClient = await createServerSupabaseClient();
+      const supabase = adminClient || userClient;
       if (supabase) {
-        const { data, error } = await supabase
-          .from('bookings')
-          .select('*, service:services(*), address:addresses(*), user:profiles(*), items:booking_items(*)')
-          .order('created_at', { ascending: false });
-        if (!error && data) return data as unknown as Booking[];
+        try {
+          const { data, error } = await supabase
+            .from('bookings')
+            .select('*, service:services(*), address:addresses(*), user:profiles(*), items:booking_items(*)')
+            .order('created_at', { ascending: false });
+          if (!error && data) {
+            supabaseBookings = data as unknown as Booking[];
+          }
+        } catch {}
       }
     }
-    return localStore.getBookings();
+    const localBookings = localStore.getBookings();
+    if (supabaseBookings.length > 0) {
+      const existingRefs = new Set(supabaseBookings.map((b) => b.booking_reference || b.id));
+      const combined = [...supabaseBookings];
+      for (const lb of localBookings) {
+        if (!existingRefs.has(lb.booking_reference) && !existingRefs.has(lb.id)) {
+          combined.push(lb);
+        }
+      }
+      return combined.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+    }
+    return localBookings;
   },
 
   async getUserBookings(userId: string): Promise<Booking[]> {
@@ -616,6 +650,19 @@ export const db = {
   },
 
   async assignWorkerToBooking(bookingId: string, workerId: string, workerName?: string) {
+    if (isSupabaseConfigured()) {
+      const adminClient = createAdminSupabaseClient();
+      const userClient = await createServerSupabaseClient();
+      const supabase = adminClient || userClient;
+      if (supabase) {
+        try {
+          await supabase
+            .from('bookings')
+            .update({ worker_id: workerId, worker_name: workerName, updated_at: new Date().toISOString() })
+            .or(`id.eq.${bookingId},booking_reference.eq.${bookingId}`);
+        } catch {}
+      }
+    }
     return localStore.assignWorkerToBooking(bookingId, workerId, workerName);
   },
 

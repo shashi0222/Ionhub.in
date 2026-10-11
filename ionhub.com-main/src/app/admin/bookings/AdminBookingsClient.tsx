@@ -1,8 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Booking, BookingStatus } from '@/types/database';
-import { adminUpdateBookingStatus } from '@/app/actions/admin';
+import { Booking, BookingStatus, UserProfile } from '@/types/database';
+import { adminUpdateBookingStatus, adminAssignWorker } from '@/app/actions/admin';
 import { formatPrice, formatDate } from '@/lib/utils';
 import { 
   CheckCircle2, 
@@ -24,6 +24,7 @@ import {
 
 interface AdminBookingsClientProps {
   initialBookings: Booking[];
+  workers?: UserProfile[];
   selectedIdFromUrl?: string;
 }
 
@@ -41,6 +42,7 @@ const ALL_STATUSES: BookingStatus[] = [
 
 export function AdminBookingsClient({
   initialBookings,
+  workers = [],
   selectedIdFromUrl,
 }: AdminBookingsClientProps) {
   const [bookings, setBookings] = useState<Booking[]>(initialBookings);
@@ -56,6 +58,38 @@ export function AdminBookingsClient({
 
   const [updating, setUpdating] = useState(false);
   const [statusMessage, setStatusMessage] = useState<string | null>(null);
+  const [selectedWorkerId, setSelectedWorkerId] = useState<string>('');
+  const [assigningWorker, setAssigningWorker] = useState(false);
+
+  const handleAssignWorker = async () => {
+    if (!activeBooking || !selectedWorkerId) return;
+    setAssigningWorker(true);
+    setStatusMessage(null);
+
+    const workerObj = workers.find((w) => w.id === selectedWorkerId);
+    const res = await adminAssignWorker(activeBooking.id, selectedWorkerId);
+    setAssigningWorker(false);
+
+    if (res?.error) {
+      setStatusMessage(`Error: ${res.error}`);
+    } else {
+      const workerName = workerObj?.full_name || 'Assigned Specialist';
+      setStatusMessage(`Specialist ${workerName} assigned successfully`);
+      setBookings((prev) =>
+        prev.map((b) =>
+          b.id === activeBooking.id
+            ? { ...b, worker_id: selectedWorkerId, worker_name: workerName }
+            : b
+        )
+      );
+      setActiveBooking({
+        ...activeBooking,
+        worker_id: selectedWorkerId,
+        worker_name: workerName,
+      });
+      setSelectedWorkerId('');
+    }
+  };
 
   // Filter bookings
   const filteredBookings = bookings.filter((b) => {
@@ -350,6 +384,51 @@ export function AdminBookingsClient({
                       <span className="font-semibold text-[#12312C]">{activeBooking.worker_name}</span>
                     </div>
                   )}
+                </div>
+
+                {/* Assign Specialist Worker Selector */}
+                <div className="p-3.5 rounded-2xl bg-[#EAF5E8]/60 border border-[#3E8E4A]/30 space-y-2 mt-3">
+                  <div className="flex items-center justify-between">
+                    <span className="font-black text-[#0B4F47] uppercase text-[10px] tracking-wider flex items-center gap-1.5">
+                      <Bike className="w-3.5 h-3.5 text-[#3E8E4A]" />
+                      <span>Assign Specialist Worker</span>
+                    </span>
+                    {activeBooking.worker_name ? (
+                      <span className="text-[10px] font-bold text-emerald-800 bg-white px-2 py-0.5 rounded-full border border-[#E0EBDD]">
+                        Assigned: {activeBooking.worker_name}
+                      </span>
+                    ) : (
+                      <span className="text-[10px] font-bold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200">
+                        Unassigned
+                      </span>
+                    )}
+                  </div>
+
+                  <div className="flex gap-2">
+                    <select
+                      value={selectedWorkerId}
+                      onChange={(e) => setSelectedWorkerId(e.target.value)}
+                      className="flex-1 px-3 py-2 rounded-xl border border-[#E0EBDD] bg-white text-xs font-semibold text-[#12312C] focus:outline-none focus:ring-2 focus:ring-[#0B4F47]"
+                    >
+                      <option value="">-- Choose Specialist Worker --</option>
+                      {workers.map((w) => (
+                        <option key={w.id} value={w.id}>
+                          {w.full_name} ({w.email})
+                        </option>
+                      ))}
+                    </select>
+                    <button
+                      disabled={!selectedWorkerId || assigningWorker}
+                      onClick={handleAssignWorker}
+                      className="px-4 py-2 rounded-xl bg-[#0B4F47] hover:bg-[#176B5D] text-white text-xs font-bold transition disabled:opacity-40 flex items-center gap-1.5"
+                    >
+                      {assigningWorker ? (
+                        <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                      ) : (
+                        <span>Assign</span>
+                      )}
+                    </button>
+                  </div>
                 </div>
               </div>
 

@@ -13,7 +13,8 @@ import {
   Settings, 
   LogOut, 
   ExternalLink,
-  MessageSquare
+  MessageSquare,
+  Wrench
 } from 'lucide-react';
 
 export default async function AdminLayout({
@@ -57,6 +58,7 @@ export default async function AdminLayout({
     { name: 'Overview', href: '/admin', icon: LayoutDashboard },
     { name: 'Ironing Pricing & Promotions', href: '/admin/pricing', icon: Sparkles },
     { name: 'Bookings Management', href: '/admin/bookings', icon: CalendarClock },
+    { name: 'Specialist Workers', href: '/admin/workers', icon: Wrench },
     { name: 'Services Catalog', href: '/admin/services', icon: Sparkles },
     { name: 'Customers', href: '/admin/customers', icon: Users },
     { name: 'Time Slots', href: '/admin/time-slots', icon: Clock },

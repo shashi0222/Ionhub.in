@@ -11,7 +11,12 @@ export default async function AdminBookingsPage(props: {
   searchParams: Promise<{ id?: string }>;
 }) {
   const searchParams = await props.searchParams;
-  const bookings = await db.getBookings();
+  const [bookings, profiles] = await Promise.all([
+    db.getBookings(),
+    db.getProfiles(),
+  ]);
+
+  const workers = profiles.filter((p) => p.role === 'worker');
 
   return (
     <div className="space-y-6">
@@ -25,6 +30,7 @@ export default async function AdminBookingsPage(props: {
       <Suspense fallback={<CardSkeleton />}>
         <AdminBookingsClient
           initialBookings={bookings}
+          workers={workers}
           selectedIdFromUrl={searchParams.id}
         />
       </Suspense>

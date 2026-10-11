@@ -19,7 +19,39 @@ export async function loginAction(prevState: ActionResponse | null, formData: Fo
     return { error: 'Please enter both email and password.' };
   }
 
-  // 1. If Supabase is configured
+  // 1. Built-in Admin Authentication (Strictly requires admin@ionhub.in and admin123)
+  if (email === 'admin@ionhub.in') {
+    if (password !== 'admin123') {
+      return { error: 'Incorrect password for admin account.' };
+    }
+    let adminProfile = await db.getProfileByEmail('admin@ionhub.in');
+    if (!adminProfile) {
+      adminProfile = await db.createProfile({
+        id: 'p0000000-0000-0000-0000-000000000001',
+        auth_user_id: 'auth-admin-1',
+        full_name: 'Operations Administrator',
+        email: 'admin@ionhub.in',
+        phone: '+91 70132 04229',
+        role: 'admin',
+        avatar_url: null,
+      });
+    }
+    await setAuthSession(adminProfile);
+    return { success: true, redirectUrl: '/admin/pricing' };
+  }
+
+  // 2. Check Specialist Worker Authentication (Admin-created or seed worker)
+  const workerProfile = await db.getProfileByEmail(email);
+  if (workerProfile && workerProfile.role === 'worker') {
+    const validWorkerPass = workerProfile.password || 'worker123';
+    if (password !== validWorkerPass) {
+      return { error: 'Incorrect password for this specialist worker account.' };
+    }
+    await setAuthSession(workerProfile);
+    return { success: true, redirectUrl: '/worker' };
+  }
+
+  // 3. Supabase Auth for registered customers
   if (process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
     const supabase = await createServerSupabaseClient();
     if (supabase) {
@@ -28,27 +60,19 @@ export async function loginAction(prevState: ActionResponse | null, formData: Fo
         password,
       });
 
-      const isDemoAccount =
-        (email === 'admin@ionhub.in' && (password === 'admin123' || password.length >= 6)) ||
-        (email === 'worker@ionhub.in' && (password === 'worker123' || password.length >= 6)) ||
-        (email === 'customer@ionhub.in' && (password === 'customer123' || password.length >= 6));
-
       if (error) {
-        if (!isDemoAccount) {
-          // Give a friendly message for unconfirmed email
-          if (error.message.toLowerCase().includes('email not confirmed')) {
-            return { error: '📧 Please confirm your email first. Check your inbox for a confirmation link from ION HUB.' };
-          }
-          return { error: error.message };
+        // Give a friendly message for unconfirmed email
+        if (error.message.toLowerCase().includes('email not confirmed')) {
+          return { error: '📧 Please confirm your email first. Check your inbox for a confirmation link from ION HUB.' };
         }
+        // If not found in Supabase Auth, check local fallback
       } else if (data.user) {
-        // Try by auth user ID first, then fall back to email
         let profile = await db.getProfileById(data.user.id);
         if (!profile) {
           profile = await db.getProfileByEmail(data.user.email!);
         }
 
-        // If trigger didn't create the profile during signup, auto-create it now
+        // Auto-create profile if missing in Supabase profiles table
         if (!profile) {
           const meta = (data.user.user_metadata || {}) as Record<string, any>;
           const fullName = meta.full_name || meta.name || data.user.email?.split('@')[0] || 'Customer';
@@ -66,7 +90,6 @@ export async function loginAction(prevState: ActionResponse | null, formData: Fo
               avatar_url: null,
             });
           } catch {
-            // Profile may have been created concurrently — fetch again
             profile = await db.getProfileById(data.user.id);
             if (!profile) {
               profile = await db.getProfileByEmail(data.user.email || email);
@@ -81,32 +104,11 @@ export async function loginAction(prevState: ActionResponse | null, formData: Fo
         }
 
         return { error: 'Authentication succeeded, but failed to load user profile. Please try again.' };
-      } else if (!isDemoAccount) {
-        return { error: 'Authentication failed. Please check your credentials.' };
       }
     }
   }
 
-  // 2. Persistent Local Mode
-  // Check admin
-  if (email === 'admin@ionhub.in' && (password === 'admin123' || password.length >= 6)) {
-    const admin = await db.getProfileByEmail('admin@ionhub.in');
-    if (admin) {
-      await setAuthSession(admin);
-      return { success: true, redirectUrl: '/admin/pricing' };
-    }
-  }
-
-  // Check worker
-  if (email === 'worker@ionhub.in' && (password === 'worker123' || password.length >= 6)) {
-    const worker = await db.getProfileByEmail('worker@ionhub.in');
-    if (worker) {
-      await setAuthSession(worker);
-      return { success: true, redirectUrl: '/worker' };
-    }
-  }
-
-  // Check customer account
+  // 4. Local Mode for registered customers or demo accounts
   if (email === 'customer@ionhub.in' && (password === 'customer123' || password.length >= 6)) {
     const customer = await db.getProfileByEmail('customer@ionhub.in');
     if (customer) {
@@ -115,7 +117,6 @@ export async function loginAction(prevState: ActionResponse | null, formData: Fo
     }
   }
 
-  // Check customer or other registered user
   const profile = await db.getProfileByEmail(email);
   if (!profile) {
     return { error: 'No account found with this email. Please sign up or check your credentials.' };

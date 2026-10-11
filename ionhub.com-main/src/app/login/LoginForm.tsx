@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { loginAction, directRoleLoginAction } from '@/app/actions/auth';
+import { loginAction } from '@/app/actions/auth';
 import { LogIn, AlertCircle, Loader2, ShieldCheck, User, Wrench } from 'lucide-react';
 
 type RoleType = 'customer' | 'worker' | 'admin';
@@ -12,8 +12,7 @@ const ROLE_CONFIGS: Record<
   {
     title: string;
     description: string;
-    defaultEmail: string;
-    defaultPass: string;
+    emailPlaceholder: string;
     buttonText: string;
     targetRoute: string;
   }
@@ -21,24 +20,21 @@ const ROLE_CONFIGS: Record<
   customer: {
     title: 'Customer Login',
     description: 'Track active bookings, garment balance & scheduled pickups.',
-    defaultEmail: 'customer@ionhub.in',
-    defaultPass: 'customer123',
+    emailPlaceholder: 'you@example.com',
     buttonText: 'Log In to Customer Dashboard',
     targetRoute: '/dashboard',
   },
   worker: {
     title: 'Specialist Worker Login',
     description: 'Access assigned pickup, service, and delivery order queue.',
-    defaultEmail: 'worker@ionhub.in',
-    defaultPass: 'worker123',
+    emailPlaceholder: 'worker@ionhub.in',
     buttonText: 'Log In to Specialist Portal',
     targetRoute: '/worker',
   },
   admin: {
     title: 'Admin Console Login',
     description: 'Manage pricing rules, service configurations, and audit records.',
-    defaultEmail: 'admin@ionhub.in',
-    defaultPass: 'admin123',
+    emailPlaceholder: 'admin@ionhub.in',
     buttonText: 'Log In to Admin Console',
     targetRoute: '/admin/pricing',
   },
@@ -49,14 +45,14 @@ export function LoginForm() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const [email, setEmail] = useState(ROLE_CONFIGS.customer.defaultEmail);
-  const [password, setPassword] = useState(ROLE_CONFIGS.customer.defaultPass);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleRoleChange = (role: RoleType) => {
     setSelectedRole(role);
     setError(null);
-    setEmail(ROLE_CONFIGS[role].defaultEmail);
-    setPassword(ROLE_CONFIGS[role].defaultPass);
+    setEmail('');
+    setPassword('');
   };
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -70,21 +66,6 @@ export function LoginForm() {
 
     const res = await loginAction(null, formData);
 
-    if (res?.error) {
-      setError(res.error);
-      setLoading(false);
-    } else if (res?.redirectUrl) {
-      window.location.href = res.redirectUrl;
-    } else {
-      setLoading(false);
-    }
-  }
-
-  // Direct 1-click enter for the selected role
-  async function handleDirectEnter(role: RoleType) {
-    setLoading(true);
-    setError(null);
-    const res = await directRoleLoginAction(role);
     if (res?.error) {
       setError(res.error);
       setLoading(false);
@@ -165,7 +146,7 @@ export function LoginForm() {
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label className="block text-xs font-bold text-[#12312C] uppercase mb-1.5">
-            Email Address
+            Email Address / Login ID
           </label>
           <input
             id="email"
@@ -174,7 +155,7 @@ export function LoginForm() {
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="you@example.com"
+            placeholder={currentConfig.emailPlaceholder}
             className="w-full px-4 py-3 rounded-xl border border-[#E0EBDD] focus:outline-none focus:ring-2 focus:ring-[#0B4F47] text-sm bg-[#FAF9F2] text-[#12312C]"
           />
         </div>
@@ -222,11 +203,26 @@ export function LoginForm() {
         </button>
       </form>
 
+      {/* Role specific footer message */}
       <div className="mt-6 text-center text-xs text-[#5A7065] border-t border-[#E0EBDD]/60 pt-4">
-        Don&apos;t have an account yet?{' '}
-        <Link href="/signup" className="font-bold text-[#0B4F47] hover:underline">
-          Sign up here
-        </Link>
+        {selectedRole === 'customer' && (
+          <p>
+            Don&apos;t have an account yet?{' '}
+            <Link href="/signup" className="font-bold text-[#0B4F47] hover:underline">
+              Sign up here
+            </Link>
+          </p>
+        )}
+        {selectedRole === 'worker' && (
+          <p className="text-[11px] text-[#5A7065] leading-relaxed">
+            Specialist workers are registered and assigned directly by administrators. Contact office for login credentials.
+          </p>
+        )}
+        {selectedRole === 'admin' && (
+          <p className="text-[11px] text-amber-800 leading-relaxed font-medium">
+            Administrator console access is restricted to authorized operations personnel.
+          </p>
+        )}
       </div>
     </div>
   );
