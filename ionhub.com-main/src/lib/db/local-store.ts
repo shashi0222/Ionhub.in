@@ -621,12 +621,19 @@ export const localStore = {
   createProfile: (profile: Omit<UserProfile, 'created_at' | 'updated_at'>) => {
     const db = readDb();
     const now = new Date().toISOString();
+    const existingIndex = db.profiles.findIndex(
+      (p) => p.email.toLowerCase() === profile.email.toLowerCase() || p.id === profile.id
+    );
     const newProfile: UserProfile = {
       ...profile,
-      created_at: now,
+      created_at: existingIndex >= 0 ? db.profiles[existingIndex].created_at : now,
       updated_at: now,
     };
-    db.profiles.push(newProfile);
+    if (existingIndex >= 0) {
+      db.profiles[existingIndex] = { ...db.profiles[existingIndex], ...newProfile };
+    } else {
+      db.profiles.push(newProfile);
+    }
     writeDb(db);
     return newProfile;
   },

@@ -29,36 +29,54 @@ function isSupabaseConfigured(): boolean {
 
 const UUID_REGEX = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
+function hydrateProfile(p: any): UserProfile | null {
+  if (!p) return null;
+  const clone = { ...p };
+  if (clone.avatar_url && typeof clone.avatar_url === 'string' && clone.avatar_url.startsWith('worker:')) {
+    clone.role = 'worker';
+    clone.password = clone.avatar_url.replace('worker:', '');
+  }
+  return clone as UserProfile;
+}
+
 export const db = {
   // Profiles
   async getProfileById(id: string): Promise<UserProfile | null> {
     if (isSupabaseConfigured()) {
-      const supabase = await createServerSupabaseClient();
+      const adminClient = createAdminSupabaseClient();
+      const userClient = await createServerSupabaseClient();
+      const supabase = adminClient || userClient;
       if (supabase) {
-        const { data, error } = await supabase
-          .from('profiles')
-          .select('*')
-          .or(`id.eq.${id},auth_user_id.eq.${id}`)
-          .single();
-        if (!error && data) return data as UserProfile;
+        try {
+          const { data, error } = await supabase
+            .from('profiles')
+            .select('*')
+            .or(`id.eq.${id},auth_user_id.eq.${id}`)
+            .single();
+          if (!error && data) return hydrateProfile(data);
+        } catch {}
       }
     }
-    return localStore.getProfileById(id) || null;
+    return hydrateProfile(localStore.getProfileById(id)) || null;
   },
 
   async getProfileByEmail(email: string): Promise<UserProfile | null> {
     if (isSupabaseConfigured()) {
-      const supabase = await createServerSupabaseClient();
+      const adminClient = createAdminSupabaseClient();
+      const userClient = await createServerSupabaseClient();
+      const supabase = adminClient || userClient;
       if (supabase) {
-        const { data, error } = await supabase
-          .from('profiles')
-          .select('*')
-          .ilike('email', email)
-          .single();
-        if (!error && data) return data as UserProfile;
+        try {
+          const { data, error } = await supabase
+            .from('profiles')
+            .select('*')
+            .ilike('email', email)
+            .single();
+          if (!error && data) return hydrateProfile(data);
+        } catch {}
       }
     }
-    return localStore.getProfileByEmail(email) || null;
+    return hydrateProfile(localStore.getProfileByEmail(email)) || null;
   },
 
   async createProfile(profile: Omit<UserProfile, 'created_at' | 'updated_at'>): Promise<UserProfile> {
@@ -70,28 +88,56 @@ export const db = {
         try {
           const isRealAuthId = profile.auth_user_id && UUID_REGEX.test(profile.auth_user_id);
           const isRealId = profile.id && UUID_REGEX.test(profile.id);
-          const toInsert: Record<string, any> = {
+          const avatarUrl =
+            profile.avatar_url ||
+            (profile.role === 'worker' && profile.password ? `worker:${profile.password}` : null);
+
+          let pData: any = null;
+
+          // 1. Try full insert (with role: 'worker' and password if schema supports it)
+          const fullInsert: Record<string, any> = {
             full_name: profile.full_name,
             email: profile.email,
             phone: profile.phone || null,
             role: profile.role || 'customer',
-            avatar_url: profile.avatar_url || null,
+            password: profile.password || null,
+            avatar_url: avatarUrl,
             auth_user_id: isRealAuthId ? profile.auth_user_id : null,
           };
-          if (isRealId) {
-            toInsert.id = profile.id;
+          if (isRealId) fullInsert.id = profile.id;
+
+          const res1 = await supabase.from('profiles').insert([fullInsert]).select().single();
+          if (!res1.error && res1.data) {
+            pData = res1.data;
+          } else {
+            // 2. Fallback to guaranteed schema: role='customer' (or 'admin') and encoded avatar_url
+            const safeInsert: Record<string, any> = {
+              full_name: profile.full_name,
+              email: profile.email,
+              phone: profile.phone || null,
+              role: profile.role === 'admin' ? 'admin' : 'customer',
+              avatar_url: avatarUrl,
+              auth_user_id: isRealAuthId ? profile.auth_user_id : null,
+            };
+            if (isRealId) safeInsert.id = profile.id;
+
+            const res2 = await supabase.from('profiles').insert([safeInsert]).select().single();
+            if (!res2.error && res2.data) {
+              pData = res2.data;
+            }
           }
-          const { data, error } = await supabase
-            .from('profiles')
-            .insert([toInsert])
-            .select()
-            .single();
-          if (!error && data) {
-            localStore.createProfile({ ...profile, id: data.id });
-            return data as UserProfile;
+
+          if (pData) {
+            const savedProfile: UserProfile = {
+              ...pData,
+              role: profile.role,
+              password: profile.password,
+            };
+            localStore.createProfile(savedProfile);
+            return savedProfile;
           }
-        } catch {
-          // Fall through to localStore
+        } catch (e) {
+          console.error('Exception in createProfile Supabase insert:', e);
         }
       }
     }
@@ -100,15 +146,19 @@ export const db = {
 
   async updateProfile(id: string, updates: Partial<UserProfile>): Promise<UserProfile | null> {
     if (isSupabaseConfigured()) {
-      const supabase = await createServerSupabaseClient();
+      const adminClient = createAdminSupabaseClient();
+      const userClient = await createServerSupabaseClient();
+      const supabase = adminClient || userClient;
       if (supabase) {
-        const { data, error } = await supabase
-          .from('profiles')
-          .update(updates)
-          .eq('id', id)
-          .select()
-          .single();
-        if (!error && data) return data as UserProfile;
+        try {
+          const { data, error } = await supabase
+            .from('profiles')
+            .update(updates)
+            .eq('id', id)
+            .select()
+            .single();
+          if (!error && data) return hydrateProfile(data);
+        } catch {}
       }
     }
     return localStore.updateProfile(id, updates);
@@ -128,10 +178,11 @@ export const db = {
         } catch {}
       }
     }
-    const localProfiles = localStore.getProfiles();
+    const localProfiles = localStore.getProfiles().map((p) => hydrateProfile(p)!);
     if (supabaseProfiles.length > 0) {
-      const existingEmails = new Set(supabaseProfiles.map((p) => p.email.toLowerCase()));
-      const combined = [...supabaseProfiles];
+      const hydratedSupabase = supabaseProfiles.map((p) => hydrateProfile(p)!);
+      const existingEmails = new Set(hydratedSupabase.map((p) => p.email.toLowerCase()));
+      const combined = [...hydratedSupabase];
       for (const lp of localProfiles) {
         if (!existingEmails.has(lp.email.toLowerCase())) {
           combined.push(lp);

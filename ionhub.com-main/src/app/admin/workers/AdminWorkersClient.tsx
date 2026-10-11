@@ -29,6 +29,10 @@ export function AdminWorkersClient({ initialWorkers, bookings }: AdminWorkersCli
   const [error, setError] = useState<string | null>(null);
   const [successMsg, setSuccessMsg] = useState<string | null>(null);
 
+  React.useEffect(() => {
+    setWorkers(initialWorkers);
+  }, [initialWorkers]);
+
   const [fullName, setFullName] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');

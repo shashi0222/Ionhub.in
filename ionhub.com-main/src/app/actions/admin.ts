@@ -4,6 +4,7 @@ import { db } from '@/lib/db';
 import { getCurrentUser } from '@/lib/auth';
 import { BookingStatus, Service, TimeSlot, ServiceArea, BusinessHour } from '@/types/database';
 import { revalidatePath } from 'next/cache';
+import { createAdminSupabaseClient, createServerSupabaseClient } from '@/lib/supabase/server';
 
 async function verifyAdmin() {
   const user = await getCurrentUser();
@@ -180,21 +181,46 @@ export async function adminCreateWorker(data: {
       return { error: 'An account with this email already exists.' };
     }
 
-    const id = `p-worker-${Date.now()}`;
+    const workerId = crypto.randomUUID();
     const newWorker = await db.createProfile({
-      id,
-      auth_user_id: `worker-auth-${Date.now()}`,
+      id: workerId,
+      auth_user_id: null,
       full_name: fullName,
       email,
       phone,
       role: 'worker',
       password,
-      avatar_url: null,
+      avatar_url: `worker:${password}`,
     });
+
+    // Also attempt creating in Supabase Auth if Supabase is configured
+    try {
+      const adminClient = createAdminSupabaseClient();
+      if (adminClient) {
+        await adminClient.auth.admin.createUser({
+          email,
+          password,
+          email_confirm: true,
+          user_metadata: { role: 'worker', full_name: fullName, phone },
+        });
+      } else {
+        const userClient = await createServerSupabaseClient();
+        if (userClient) {
+          await userClient.auth.signUp({
+            email,
+            password,
+            options: { data: { role: 'worker', full_name: fullName, phone } },
+          });
+        }
+      }
+    } catch {
+      // Supabase Auth creation is non-blocking since db.createProfile already stored worker credentials
+    }
 
     revalidatePath('/admin');
     revalidatePath('/admin/workers');
     revalidatePath('/admin/bookings');
+    revalidatePath('/login');
     return { success: true, worker: newWorker };
   } catch (err: unknown) {
     return { error: err instanceof Error ? err.message : 'Failed to create worker' };

@@ -567,3 +567,18 @@ DO $$ BEGIN
 EXCEPTION WHEN duplicate_object THEN null;
 END $$;
 
+-- Support worker role and password on profiles
+DO $$ BEGIN
+    ALTER TYPE user_role ADD VALUE IF NOT EXISTS 'worker';
+EXCEPTION WHEN undefined_object THEN null;
+          WHEN duplicate_object THEN null;
+END $$;
+
+ALTER TABLE public.profiles ADD COLUMN IF NOT EXISTS password TEXT;
+
+DO $$ BEGIN
+    CREATE POLICY "Public select profiles" ON public.profiles FOR SELECT USING (true);
+EXCEPTION WHEN duplicate_object THEN null;
+END $$;
+
+
