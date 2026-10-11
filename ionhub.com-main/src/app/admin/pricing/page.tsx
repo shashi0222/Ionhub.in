@@ -2,6 +2,9 @@ import React from 'react';
 import { db } from '@/lib/db';
 import { AdminPricingManager } from './AdminPricingManager';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export const metadata = {
   title: 'Ironing Pricing & Promotions Management — ION HUB Admin',
   description: 'Manage per-order ironing prices, loyalty promotion rules, monthly plans, overage rates, and view live database stats.',

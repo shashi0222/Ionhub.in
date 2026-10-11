@@ -3,6 +3,9 @@ import { db } from '@/lib/db';
 import { AdminBookingsClient } from './AdminBookingsClient';
 import { CardSkeleton } from '@/components/LoadingState';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export const metadata = {
   title: 'Booking Management — ION HUB Admin',
 };

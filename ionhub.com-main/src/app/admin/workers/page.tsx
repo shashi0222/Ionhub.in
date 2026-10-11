@@ -2,6 +2,9 @@ import React from 'react';
 import { db } from '@/lib/db';
 import { AdminWorkersClient } from './AdminWorkersClient';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export const metadata = {
   title: 'Specialist Workers Management — ION HUB Admin',
 };

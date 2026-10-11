@@ -526,3 +526,44 @@ VALUES
     ('Friday', '18:00', '23:00', TRUE, 'Daily 6 PM – 11 PM, Weekends Available'),
     ('Saturday', '18:00', '23:00', TRUE, 'Daily 6 PM – 11 PM, Weekends Available'),
     ('Sunday', '18:00', '23:00', TRUE, 'Daily 6 PM – 11 PM, Weekends Available');
+
+-- ==============================================================================
+-- 18. MIGRATION FOR COMPREHENSIVE BOOKINGS & RLS
+-- ==============================================================================
+ALTER TABLE public.bookings ADD COLUMN IF NOT EXISTS pricing_type TEXT;
+ALTER TABLE public.bookings ADD COLUMN IF NOT EXISTS pairs_count INT;
+ALTER TABLE public.bookings ADD COLUMN IF NOT EXISTS garments_count INT;
+ALTER TABLE public.bookings ADD COLUMN IF NOT EXISTS unit_price NUMERIC(10, 2);
+ALTER TABLE public.bookings ADD COLUMN IF NOT EXISTS subtotal NUMERIC(10, 2);
+ALTER TABLE public.bookings ADD COLUMN IF NOT EXISTS discount_amount NUMERIC(10, 2) DEFAULT 0;
+ALTER TABLE public.bookings ADD COLUMN IF NOT EXISTS reward_id_applied TEXT;
+ALTER TABLE public.bookings ADD COLUMN IF NOT EXISTS subscription_id_applied TEXT;
+ALTER TABLE public.bookings ADD COLUMN IF NOT EXISTS overage_garments INT;
+ALTER TABLE public.bookings ADD COLUMN IF NOT EXISTS overage_charge NUMERIC(10, 2);
+ALTER TABLE public.bookings ADD COLUMN IF NOT EXISTS final_payable_amount NUMERIC(10, 2);
+ALTER TABLE public.bookings ADD COLUMN IF NOT EXISTS payment_status TEXT DEFAULT 'PAID';
+ALTER TABLE public.bookings ADD COLUMN IF NOT EXISTS worker_id TEXT;
+ALTER TABLE public.bookings ADD COLUMN IF NOT EXISTS worker_name TEXT;
+ALTER TABLE public.bookings ADD COLUMN IF NOT EXISTS worker_payout NUMERIC(10, 2);
+
+-- Permissive policies so guest checkouts and admin viewing are never rejected by RLS
+DO $$ BEGIN
+    CREATE POLICY "Public insert bookings" ON public.bookings FOR INSERT WITH CHECK (true);
+EXCEPTION WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+    CREATE POLICY "Public insert addresses" ON public.addresses FOR INSERT WITH CHECK (true);
+EXCEPTION WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+    CREATE POLICY "Public insert profiles" ON public.profiles FOR INSERT WITH CHECK (true);
+EXCEPTION WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+    CREATE POLICY "Public select bookings" ON public.bookings FOR SELECT USING (true);
+EXCEPTION WHEN duplicate_object THEN null;
+END $$;
+

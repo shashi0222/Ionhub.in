@@ -44,8 +44,8 @@ export async function submitBookingAction(payload: BookingSubmissionPayload) {
       let profile = await db.getProfileByEmail(email);
       if (!profile) {
         profile = await db.createProfile({
-          id: `p-${Date.now()}`,
-          auth_user_id: `guest-${Date.now()}`,
+          id: crypto.randomUUID(),
+          auth_user_id: null,
           full_name: payload.guestDetails.fullName.trim(),
           phone: payload.guestDetails.phone.trim(),
           email,
@@ -101,6 +101,7 @@ export async function submitBookingAction(payload: BookingSubmissionPayload) {
       }
 
       const createdAddr = await db.createAddress({
+        id: crypto.randomUUID(),
         user_id: user.id,
         label: payload.newAddress.label || 'Home',
         address_line: payload.newAddress.addressLine,
@@ -111,7 +112,7 @@ export async function submitBookingAction(payload: BookingSubmissionPayload) {
         landmark: payload.newAddress.landmark || null,
         latitude: null,
         longitude: null,
-      });
+      } as any);
       addressId = createdAddr.id;
     }
 

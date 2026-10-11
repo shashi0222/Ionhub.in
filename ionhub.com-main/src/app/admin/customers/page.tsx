@@ -3,6 +3,9 @@ import { db } from '@/lib/db';
 import { formatDate } from '@/lib/utils';
 import { Users, Phone, Mail, Calendar, ShieldCheck, MapPin } from 'lucide-react';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export const metadata = {
   title: 'Customer Management — ION HUB Admin',
 };

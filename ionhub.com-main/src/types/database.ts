@@ -17,7 +17,7 @@ export type BookingStatus =
 
 export interface UserProfile {
   id: string;
-  auth_user_id: string;
+  auth_user_id: string | null;
   full_name: string;
   phone: string;
   email: string;

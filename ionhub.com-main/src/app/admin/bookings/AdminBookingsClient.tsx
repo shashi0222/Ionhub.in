@@ -56,6 +56,13 @@ export function AdminBookingsClient({
       : initialBookings[0] || null
   );
 
+  React.useEffect(() => {
+    setBookings(initialBookings);
+    if (initialBookings.length > 0 && !activeBooking) {
+      setActiveBooking(initialBookings[0]);
+    }
+  }, [initialBookings]);
+
   const [updating, setUpdating] = useState(false);
   const [statusMessage, setStatusMessage] = useState<string | null>(null);
   const [selectedWorkerId, setSelectedWorkerId] = useState<string>('');
@@ -93,17 +100,23 @@ export function AdminBookingsClient({
 
   // Filter bookings
   const filteredBookings = bookings.filter((b) => {
+    const ref = (b.booking_reference || b.id || '').toLowerCase();
+    const customer = (b.user?.full_name || '').toLowerCase();
+    const address = (b.address?.address_line || b.address?.area || '').toLowerCase();
+    const q = searchTerm.toLowerCase().trim();
+
     // Search
-    const matchesSearch =
-      b.booking_reference.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      (b.user?.full_name || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
-      (b.address?.address_line || '').toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesSearch = !q || ref.includes(q) || customer.includes(q) || address.includes(q);
 
     // Status
     const matchesStatus = statusFilter === 'ALL' || b.status === statusFilter;
 
     // Service
-    const matchesService = serviceFilter === 'ALL' || b.service?.slug === serviceFilter;
+    const matchesService =
+      serviceFilter === 'ALL' ||
+      b.service?.slug === serviceFilter ||
+      (serviceFilter === 'ironing' && (b.service_id === 's2222222-2222-2222-2222-222222222222' || b.service?.slug === 'ironing')) ||
+      (serviceFilter === 'car-wash' && (b.service_id === 's1111111-1111-1111-1111-111111111111' || b.service?.slug === 'car-wash'));
 
     return matchesSearch && matchesStatus && matchesService;
   });
@@ -212,12 +225,16 @@ export function AdminBookingsClient({
                         <span className="text-xs font-mono font-bold text-[#0B4F47]">
                           #{b.booking_reference}
                         </span>
-                        <span className="text-xs font-black text-[#12312C]">{b.service?.name}</span>
+                        <span className="text-xs font-black text-[#12312C]">
+                          {b.service?.name || (b.service_id === 's2222222-2222-2222-2222-222222222222' ? 'Doorstep Ironing' : 'Doorstep Car Wash')}
+                        </span>
                       </div>
                       <p className="text-[11px] text-[#5A7065] mt-0.5">
                         {b.user?.full_name || 'Customer'} • {formatDate(b.booking_date)} ({b.time_slot})
                       </p>
-                      <p className="text-[10px] text-[#5A7065] truncate max-w-xs">{b.address?.address_line}</p>
+                      <p className="text-[10px] text-[#5A7065] truncate max-w-xs">
+                        {b.address?.address_line || (b.address?.area ? `Doorstep — ${b.address.area}` : 'Doorstep Kompally')}
+                      </p>
                     </div>
 
                     <div className="text-left sm:text-right">

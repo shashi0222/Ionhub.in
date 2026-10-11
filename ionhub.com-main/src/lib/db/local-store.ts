@@ -541,25 +541,21 @@ const INITIAL_DATA: DatabaseSchema = {
 };
 
 function readDb(): DatabaseSchema {
-  if (memoryDb) {
-    return memoryDb;
-  }
-
   try {
     let raw: string | null = null;
 
-    // 1. Try reading from /tmp (persists across warm invocations in serverless)
-    if (fs.existsSync(TMP_DB_FILE)) {
+    // 1. Try reading from project data file (always latest on disk in local/dev)
+    if (fs.existsSync(DB_FILE)) {
       try {
-        raw = fs.readFileSync(TMP_DB_FILE, 'utf-8');
-      } catch {
-        // Fall back to bundled data
-      }
+        raw = fs.readFileSync(DB_FILE, 'utf-8');
+      } catch {}
     }
 
-    // 2. Try reading from local data directory
-    if (!raw && fs.existsSync(DB_FILE)) {
-      raw = fs.readFileSync(DB_FILE, 'utf-8');
+    // 2. Try reading from /tmp (persists in serverless environments)
+    if (!raw && fs.existsSync(TMP_DB_FILE)) {
+      try {
+        raw = fs.readFileSync(TMP_DB_FILE, 'utf-8');
+      } catch {}
     }
 
     if (raw) {
@@ -583,6 +579,10 @@ function readDb(): DatabaseSchema {
     }
   } catch (err) {
     console.error('Error reading local DB:', err);
+  }
+
+  if (memoryDb) {
+    return memoryDb;
   }
 
   const fallback: DatabaseSchema = { ...INITIAL_DATA };

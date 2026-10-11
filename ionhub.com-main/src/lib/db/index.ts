@@ -71,18 +71,25 @@ export const db = {
           const isRealAuthId = profile.auth_user_id && UUID_REGEX.test(profile.auth_user_id);
           const isRealId = profile.id && UUID_REGEX.test(profile.id);
           const toInsert: Record<string, any> = {
-            ...profile,
+            full_name: profile.full_name,
+            email: profile.email,
+            phone: profile.phone || null,
+            role: profile.role || 'customer',
+            avatar_url: profile.avatar_url || null,
             auth_user_id: isRealAuthId ? profile.auth_user_id : null,
           };
-          if (!isRealId) {
-            delete toInsert.id;
+          if (isRealId) {
+            toInsert.id = profile.id;
           }
           const { data, error } = await supabase
             .from('profiles')
             .insert([toInsert])
             .select()
             .single();
-          if (!error && data) return data as UserProfile;
+          if (!error && data) {
+            localStore.createProfile({ ...profile, id: data.id });
+            return data as UserProfile;
+          }
         } catch {
           // Fall through to localStore
         }
@@ -236,16 +243,28 @@ export const db = {
           const isRealId = (address as any).id && UUID_REGEX.test((address as any).id);
           const isRealUserId = address.user_id && UUID_REGEX.test(address.user_id);
           if (isRealUserId) {
-            const toInsert: Record<string, any> = { ...address };
-            if (!isRealId) {
-              delete toInsert.id;
+            const toInsert: Record<string, any> = {
+              user_id: address.user_id,
+              label: address.label || 'Home',
+              address_line: address.address_line,
+              area: address.area,
+              city: address.city || 'Hyderabad',
+              state: address.state || 'Telangana',
+              pincode: address.pincode || '500100',
+              landmark: address.landmark || null,
+            };
+            if (isRealId) {
+              toInsert.id = (address as any).id;
             }
             const { data, error } = await supabase
               .from('addresses')
               .insert([toInsert])
               .select()
               .single();
-            if (!error && data) return data as Address;
+            if (!error && data) {
+              localStore.createAddress({ ...address, id: data.id } as any);
+              return data as Address;
+            }
           }
         } catch {
           // Fall through to localStore
@@ -413,44 +432,114 @@ export const db = {
       }
     }
     const localBookings = localStore.getBookings();
-    if (supabaseBookings.length > 0) {
-      const existingRefs = new Set(supabaseBookings.map((b) => b.booking_reference || b.id));
-      const combined = [...supabaseBookings];
-      for (const lb of localBookings) {
-        if (!existingRefs.has(lb.booking_reference) && !existingRefs.has(lb.id)) {
-          combined.push(lb);
-        }
-      }
-      return combined.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+
+    // Merge Supabase and LocalStore so NO bookings are ever lost
+    const combined: Booking[] = [...supabaseBookings];
+    const existingKeys = new Set<string>();
+    for (const b of supabaseBookings) {
+      if (b.booking_reference) existingKeys.add(b.booking_reference.toLowerCase());
+      if (b.id) existingKeys.add(b.id.toLowerCase());
     }
-    return localBookings;
+
+    for (const lb of localBookings) {
+      const ref = (lb.booking_reference || '').toLowerCase();
+      const id = (lb.id || '').toLowerCase();
+      if ((ref && existingKeys.has(ref)) || (id && existingKeys.has(id))) {
+        continue;
+      }
+      combined.push(lb);
+      if (ref) existingKeys.add(ref);
+      if (id) existingKeys.add(id);
+    }
+
+    // Ensure service, user, and address relations are populated for every booking
+    const allServices = localStore.getServices();
+    const serviceMap = new Map(allServices.map((s) => [s.id, s]));
+
+    for (const b of combined) {
+      if (!b.service && b.service_id) {
+        b.service = serviceMap.get(b.service_id) || localStore.getServiceById(b.service_id) || undefined;
+      }
+      if (!b.user && b.user_id) {
+        b.user = localStore.getProfileById(b.user_id) || undefined;
+      }
+      if (!b.address && b.address_id) {
+        b.address = localStore.getAddressById(b.address_id) || undefined;
+      }
+    }
+
+    return combined.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
   },
 
   async getUserBookings(userId: string): Promise<Booking[]> {
+    let supabaseBookings: Booking[] = [];
     if (isSupabaseConfigured()) {
-      const supabase = await createServerSupabaseClient();
+      const adminClient = createAdminSupabaseClient();
+      const userClient = await createServerSupabaseClient();
+      const supabase = adminClient || userClient;
       if (supabase) {
-        const { data, error } = await supabase
-          .from('bookings')
-          .select('*, service:services(*), address:addresses(*), user:profiles(*), items:booking_items(*)')
-          .eq('user_id', userId)
-          .order('created_at', { ascending: false });
-        if (!error && data) return data as unknown as Booking[];
+        try {
+          const { data, error } = await supabase
+            .from('bookings')
+            .select('*, service:services(*), address:addresses(*), user:profiles(*), items:booking_items(*)')
+            .eq('user_id', userId)
+            .order('created_at', { ascending: false });
+          if (!error && data) supabaseBookings = data as unknown as Booking[];
+        } catch {}
       }
     }
-    return localStore.getUserBookings(userId);
+    const localBookings = localStore.getUserBookings(userId);
+
+    const combined: Booking[] = [...supabaseBookings];
+    const existingKeys = new Set<string>();
+    for (const b of supabaseBookings) {
+      if (b.booking_reference) existingKeys.add(b.booking_reference.toLowerCase());
+      if (b.id) existingKeys.add(b.id.toLowerCase());
+    }
+
+    for (const lb of localBookings) {
+      const ref = (lb.booking_reference || '').toLowerCase();
+      const id = (lb.id || '').toLowerCase();
+      if ((ref && existingKeys.has(ref)) || (id && existingKeys.has(id))) {
+        continue;
+      }
+      combined.push(lb);
+      if (ref) existingKeys.add(ref);
+      if (id) existingKeys.add(id);
+    }
+
+    const allServices = localStore.getServices();
+    const serviceMap = new Map(allServices.map((s) => [s.id, s]));
+
+    for (const b of combined) {
+      if (!b.service && b.service_id) {
+        b.service = serviceMap.get(b.service_id) || localStore.getServiceById(b.service_id) || undefined;
+      }
+      if (!b.user && b.user_id) {
+        b.user = localStore.getProfileById(b.user_id) || undefined;
+      }
+      if (!b.address && b.address_id) {
+        b.address = localStore.getAddressById(b.address_id) || undefined;
+      }
+    }
+
+    return combined.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
   },
 
   async getBookingById(id: string): Promise<Booking | null> {
     if (isSupabaseConfigured()) {
-      const supabase = await createServerSupabaseClient();
+      const adminClient = createAdminSupabaseClient();
+      const userClient = await createServerSupabaseClient();
+      const supabase = adminClient || userClient;
       if (supabase) {
-        const { data, error } = await supabase
-          .from('bookings')
-          .select('*, service:services(*), address:addresses(*), user:profiles(*), items:booking_items(*)')
-          .or(`id.eq.${id},booking_reference.eq.${id}`)
-          .single();
-        if (!error && data) return data as unknown as Booking;
+        try {
+          const { data, error } = await supabase
+            .from('bookings')
+            .select('*, service:services(*), address:addresses(*), user:profiles(*), items:booking_items(*)')
+            .or(`id.eq.${id},booking_reference.eq.${id}`)
+            .single();
+          if (!error && data) return data as unknown as Booking;
+        } catch {}
       }
     }
     return localStore.getBookingById(id);
@@ -460,24 +549,84 @@ export const db = {
     booking: Omit<Booking, 'id' | 'created_at' | 'updated_at'>,
     items?: Array<{ name: string; quantity: number }>
   ): Promise<Booking | null> {
+    let savedBooking: Booking | null = null;
+
     if (isSupabaseConfigured()) {
       const adminClient = createAdminSupabaseClient();
       const userClient = await createServerSupabaseClient();
       const supabase = adminClient || userClient;
       if (supabase) {
         try {
+          // 1. Ensure foreign key user profile exists in Supabase
+          if (booking.user_id && UUID_REGEX.test(booking.user_id)) {
+            const { data: userExists } = await supabase.from('profiles').select('id').eq('id', booking.user_id).single();
+            if (!userExists) {
+              const localProf = localStore.getProfileById(booking.user_id);
+              if (localProf) {
+                await supabase.from('profiles').insert([{
+                  id: localProf.id,
+                  full_name: localProf.full_name,
+                  phone: localProf.phone || null,
+                  email: localProf.email,
+                  role: localProf.role,
+                  avatar_url: localProf.avatar_url || null,
+                  auth_user_id: null,
+                }]);
+              }
+            }
+          }
+
+          // 2. Ensure foreign key address exists in Supabase
+          if (booking.address_id && UUID_REGEX.test(booking.address_id)) {
+            const { data: addrExists } = await supabase.from('addresses').select('id').eq('id', booking.address_id).single();
+            if (!addrExists) {
+              const localAddr = localStore.getAddressById(booking.address_id);
+              if (localAddr) {
+                await supabase.from('addresses').insert([{
+                  id: localAddr.id,
+                  user_id: localAddr.user_id,
+                  label: localAddr.label || 'Home',
+                  address_line: localAddr.address_line,
+                  area: localAddr.area,
+                  city: localAddr.city || 'Hyderabad',
+                  state: localAddr.state || 'Telangana',
+                  pincode: localAddr.pincode || '500100',
+                  landmark: localAddr.landmark || null,
+                }]);
+              }
+            }
+          }
+
           const isRealUserId = booking.user_id && UUID_REGEX.test(booking.user_id);
           const isRealAddressId = booking.address_id && UUID_REGEX.test(booking.address_id);
           const isRealServiceId = booking.service_id && UUID_REGEX.test(booking.service_id);
 
-          // Only attempt Supabase insert if referenced IDs are valid UUIDs
           if (isRealUserId && isRealAddressId && isRealServiceId) {
-            const { data: bData, error: bError } = await supabase
-              .from('bookings')
-              .insert([booking])
-              .select()
-              .single();
-            if (!bError && bData) {
+            // First attempt inserting with full fields
+            let bData: any = null;
+            const fullRes = await supabase.from('bookings').insert([booking]).select().single();
+            if (!fullRes.error && fullRes.data) {
+              bData = fullRes.data;
+            } else {
+              // Fallback to base columns guaranteed by schema
+              const baseBooking: Record<string, any> = {
+                booking_reference: booking.booking_reference,
+                user_id: booking.user_id,
+                service_id: booking.service_id,
+                address_id: booking.address_id,
+                booking_date: booking.booking_date,
+                time_slot: booking.time_slot,
+                status: booking.status || 'PENDING',
+                customer_notes: booking.customer_notes || null,
+                total_amount: booking.final_payable_amount ?? booking.total_amount ?? booking.subtotal ?? 0,
+              };
+              const baseRes = await supabase.from('bookings').insert([baseBooking]).select().single();
+              if (!baseRes.error && baseRes.data) {
+                bData = baseRes.data;
+              }
+            }
+
+            if (bData) {
               if (items && items.length > 0) {
                 const bookingItems = items.map((i) => ({
                   booking_id: bData.id,
@@ -487,15 +636,18 @@ export const db = {
                 await supabase.from('booking_items').insert(bookingItems);
               }
               const retrieved = await db.getBookingById(bData.id);
-              if (retrieved) return retrieved;
+              if (retrieved) savedBooking = retrieved;
             }
           }
-        } catch {
-          // Fall through to localStore
+        } catch (e) {
+          console.error('Supabase booking creation error:', e);
         }
       }
     }
-    return localStore.createBooking(booking, items);
+
+    // ALWAYS write to localStore as well so local/serverless persistence is complete
+    const localSaved = localStore.createBooking(booking, items);
+    return savedBooking || localSaved;
   },
 
   async updateBookingStatus(id: string, status: BookingStatus): Promise<Booking | null> {
