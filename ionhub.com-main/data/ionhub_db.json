@@ -54,6 +54,17 @@
       "avatar_url": null,
       "created_at": "2026-10-09T12:55:22.336Z",
       "updated_at": "2026-10-09T12:55:22.336Z"
+    },
+    {
+      "id": "p-1791713584481",
+      "auth_user_id": "auth-1791713584481",
+      "full_name": "Shashidhar Reddy",
+      "email": "25h51a6657@cmrcet.ac.in",
+      "phone": "7995678708",
+      "role": "customer",
+      "avatar_url": null,
+      "created_at": "2026-10-11T10:13:04.482Z",
+      "updated_at": "2026-10-11T10:13:04.482Z"
     }
   ],
   "categories": [

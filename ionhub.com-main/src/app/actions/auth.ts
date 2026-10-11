@@ -29,17 +29,26 @@ export async function loginAction(prevState: ActionResponse | null, formData: Fo
       });
 
       if (error) {
+        // Give a friendly message for unconfirmed email
+        if (error.message.toLowerCase().includes('email not confirmed')) {
+          return { error: '📧 Please confirm your email first. Check your inbox for a confirmation link from ION HUB.' };
+        }
         return { error: error.message };
       }
 
       if (data.user) {
-        const profile = await db.getProfileById(data.user.id);
+        // Try by auth user ID first, then fall back to email
+        let profile = await db.getProfileById(data.user.id);
+        if (!profile) {
+          profile = await db.getProfileByEmail(data.user.email!);
+        }
         if (profile) {
           await setAuthSession(profile);
           const redirectUrl = profile.role === 'admin' ? '/admin/pricing' : profile.role === 'worker' ? '/worker' : '/dashboard';
           return { success: true, redirectUrl };
         }
       }
+
     }
   }
 
@@ -149,12 +158,50 @@ export async function signupAction(prevState: ActionResponse | null, formData: F
       }
 
       if (data.user) {
-        const profile = await db.getProfileById(data.user.id);
+        // If email confirmation is required, session will be null
+        if (!data.session) {
+          return {
+            error: '✅ Account created! Please check your email to confirm your account, then log in.',
+          };
+        }
+
+        // Try to get profile (trigger may need a moment to fire)
+        let profile = await db.getProfileById(data.user.id);
+
+        // Retry up to 3 times with a short delay for trigger latency
+        if (!profile) {
+          for (let i = 0; i < 3; i++) {
+            await new Promise((resolve) => setTimeout(resolve, 600));
+            profile = await db.getProfileById(data.user.id);
+            if (profile) break;
+          }
+        }
+
+        // If trigger still hasn't created the profile, upsert it directly
+        if (!profile) {
+          try {
+            profile = await db.createProfile({
+              id: data.user.id,
+              auth_user_id: data.user.id,
+              full_name: fullName,
+              email,
+              phone,
+              role: 'customer',
+              avatar_url: null,
+            });
+          } catch {
+            // Profile may have been created by trigger between retries — fetch again
+            profile = await db.getProfileById(data.user.id);
+          }
+        }
+
         if (profile) {
           await setAuthSession(profile);
           redirect('/dashboard');
         }
       }
+
+      return { error: 'Account created but could not log in automatically. Please log in manually.' };
     }
   }
 
@@ -177,6 +224,7 @@ export async function signupAction(prevState: ActionResponse | null, formData: F
   await setAuthSession(newProfile);
   redirect('/dashboard');
 }
+
 
 export async function logoutAction() {
   await clearAuthSession();
