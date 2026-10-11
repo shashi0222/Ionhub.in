@@ -1,0 +1,3012 @@
+{
+  "profiles": [
+    {
+      "id": "p0000000-0000-0000-0000-000000000001",
+      "auth_user_id": "auth-admin-1",
+      "full_name": "ION HUB Admin",
+      "phone": "+91 90000 00000",
+      "email": "admin@ionhub.in",
+      "role": "admin",
+      "avatar_url": null,
+      "created_at": "2026-10-05T13:44:08.058Z",
+      "updated_at": "2026-10-05T13:44:08.060Z"
+    },
+    {
+      "id": "p0000000-0000-0000-0000-000000000002",
+      "auth_user_id": "auth-customer-1",
+      "full_name": "Demo Customer",
+      "phone": "+91 98765 43210",
+      "email": "customer@ionhub.in",
+      "role": "customer",
+      "avatar_url": null,
+      "created_at": "2026-10-05T13:44:08.060Z",
+      "updated_at": "2026-10-05T13:44:08.060Z"
+    },
+    {
+      "id": "p0000000-0000-0000-0000-000000000003",
+      "auth_user_id": "auth-worker-1",
+      "full_name": "Ramesh Kumar (Ironing Specialist)",
+      "phone": "+91 91234 56789",
+      "email": "worker@ionhub.in",
+      "role": "worker",
+      "avatar_url": null,
+      "created_at": "2026-10-05T13:44:08.060Z",
+      "updated_at": "2026-10-05T13:44:08.060Z"
+    },
+    {
+      "id": "p-1791550428125",
+      "auth_user_id": "auth-1791550428125",
+      "full_name": "Yaswanth Kuncham",
+      "email": "yaswanthkuncham7@gmail.com",
+      "phone": "8790111220",
+      "role": "customer",
+      "avatar_url": null,
+      "created_at": "2026-10-09T12:53:48.125Z",
+      "updated_at": "2026-10-09T12:53:48.125Z"
+    },
+    {
+      "id": "p-1791550522334",
+      "auth_user_id": "auth-1791550522334",
+      "full_name": "Yaswanth Kuncham",
+      "email": "kunchamyaswanth52@gmail.com",
+      "phone": "8790111220",
+      "role": "customer",
+      "avatar_url": null,
+      "created_at": "2026-10-09T12:55:22.336Z",
+      "updated_at": "2026-10-09T12:55:22.336Z"
+    }
+  ],
+  "categories": [
+    {
+      "id": "c1111111-1111-1111-1111-111111111111",
+      "name": "Automotive Care",
+      "slug": "automotive-care",
+      "description": "Eco-friendly doorstep vehicle cleaning and detailing",
+      "icon": "Car",
+      "is_active": true,
+      "display_order": 1,
+      "created_at": "2026-10-05T13:44:08.060Z",
+      "updated_at": "2026-10-05T13:44:08.060Z"
+    },
+    {
+      "id": "c2222222-2222-2222-2222-222222222222",
+      "name": "Garment Care",
+      "slug": "garment-care",
+      "description": "Crisp, wrinkle-free clothes with doorstep pickup & delivery",
+      "icon": "Shirt",
+      "is_active": true,
+      "display_order": 2,
+      "created_at": "2026-10-05T13:44:08.060Z",
+      "updated_at": "2026-10-05T13:44:08.060Z"
+    },
+    {
+      "id": "c3333333-3333-3333-3333-333333333333",
+      "name": "Home Services",
+      "slug": "home-services",
+      "description": "Everyday home care and deep cleaning services",
+      "icon": "Home",
+      "is_active": true,
+      "display_order": 3,
+      "created_at": "2026-10-05T13:44:08.060Z",
+      "updated_at": "2026-10-05T13:44:08.060Z"
+    }
+  ],
+  "services": [
+    {
+      "id": "s1111111-1111-1111-1111-111111111111",
+      "category_id": "c1111111-1111-1111-1111-111111111111",
+      "name": "Doorstep Car Wash",
+      "slug": "car-wash",
+      "description": "Sparkling clean cars, happier drives. Our trained specialists arrive at your doorstep equipped with eco-friendly solutions, high-grade microfiber tools, and safe washing techniques to leave your vehicle looking brand new.",
+      "short_description": "Professional eco-friendly wash, interior vacuuming & spotless finish at your home.",
+      "image_url": "/brand/creative_carwash.jpeg",
+      "duration_minutes": 60,
+      "price": null,
+      "is_active": true,
+      "is_featured": true,
+      "created_at": "2026-10-05T13:44:08.060Z",
+      "updated_at": "2026-10-05T13:44:08.060Z"
+    },
+    {
+      "id": "s2222222-2222-2222-2222-222222222222",
+      "category_id": "c2222222-2222-2222-2222-222222222222",
+      "name": "Professional Ironing",
+      "slug": "ironing",
+      "description": "Zero ironing hassle. We collect your garments, give them crisp, professional pressing with temperature-controlled precision, pack them neatly, and deliver right back to your doorstep.",
+      "short_description": "Steam and dry press for shirts, trousers, formal wear with pickup & delivery. ₹25 per pair.",
+      "image_url": "/brand/creative_ironing.jpeg",
+      "duration_minutes": 45,
+      "price": 25,
+      "is_active": true,
+      "is_featured": true,
+      "created_at": "2026-10-05T13:44:08.060Z",
+      "updated_at": "2026-10-05T13:44:08.060Z"
+    },
+    {
+      "id": "s3333333-3333-3333-3333-333333333333",
+      "category_id": "c3333333-3333-3333-3333-333333333333",
+      "name": "Home Services",
+      "slug": "home-services",
+      "description": "Comprehensive home care, deep cleaning, and appliance sanitization tailored for modern living.",
+      "short_description": "Everyday home cleaning, kitchen & bathroom sanitization.",
+      "image_url": "/brand/logo_source.png",
+      "duration_minutes": 120,
+      "price": null,
+      "is_active": false,
+      "is_featured": false,
+      "created_at": "2026-10-05T13:44:08.060Z",
+      "updated_at": "2026-10-05T13:44:08.060Z"
+    }
+  ],
+  "service_items": [
+    {
+      "id": "si-1",
+      "service_id": "s1111111-1111-1111-1111-111111111111",
+      "name": "Exterior Wash & Dry",
+      "description": "High-pressure gentle foam rinse and streak-free microfiber dry",
+      "price": null,
+      "is_active": true
+    },
+    {
+      "id": "si-2",
+      "service_id": "s1111111-1111-1111-1111-111111111111",
+      "name": "Interior Vacuuming",
+      "description": "Complete vacuuming of floor mats, seats, and footwells",
+      "price": null,
+      "is_active": true
+    },
+    {
+      "id": "si-3",
+      "service_id": "s1111111-1111-1111-1111-111111111111",
+      "name": "Dashboard & Trim Cleaning",
+      "description": "Dust removal and gentle UV protective conditioning",
+      "price": null,
+      "is_active": true
+    },
+    {
+      "id": "si-4",
+      "service_id": "s1111111-1111-1111-1111-111111111111",
+      "name": "Tire & Rim Cleaning",
+      "description": "Brake dust removal and deep tire gloss finish",
+      "price": null,
+      "is_active": true
+    },
+    {
+      "id": "si-5",
+      "service_id": "s1111111-1111-1111-1111-111111111111",
+      "name": "Spotless Finish",
+      "description": "Microfiber glass buffing and final paint check",
+      "price": null,
+      "is_active": true
+    },
+    {
+      "id": "si-6",
+      "service_id": "s2222222-2222-2222-2222-222222222222",
+      "name": "Shirts",
+      "description": "Crisp collars, sleeves, and wrinkle-free body press",
+      "price": null,
+      "is_active": true
+    },
+    {
+      "id": "si-7",
+      "service_id": "s2222222-2222-2222-2222-222222222222",
+      "name": "Trousers & Chinos",
+      "description": "Sharp center crease or flat press as preferred",
+      "price": null,
+      "is_active": true
+    },
+    {
+      "id": "si-8",
+      "service_id": "s2222222-2222-2222-2222-222222222222",
+      "name": "Formal Wear & Blazers",
+      "description": "Delicate temperature-controlled steaming and care",
+      "price": null,
+      "is_active": true
+    },
+    {
+      "id": "si-9",
+      "service_id": "s2222222-2222-2222-2222-222222222222",
+      "name": "Other Suitable Garments",
+      "description": "Kurtas, dresses, linens, and everyday wear",
+      "price": null,
+      "is_active": true
+    }
+  ],
+  "addresses": [
+    {
+      "id": "addr-demo-1",
+      "user_id": "p0000000-0000-0000-0000-000000000002",
+      "label": "Home",
+      "address_line": "Villa 42, Green Meadows, Near Cine Planet",
+      "area": "Kompally",
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "pincode": "500100",
+      "landmark": "Opposite Community Hall",
+      "latitude": null,
+      "longitude": null,
+      "created_at": "2026-10-05T13:44:08.060Z",
+      "updated_at": "2026-10-05T13:44:08.060Z"
+    },
+    {
+      "user_id": "p-1791550428125",
+      "label": "Other",
+      "address_line": "CMR BOYS HOSTEL",
+      "area": "Kompally",
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "pincode": "500100",
+      "landmark": "CMRIT",
+      "latitude": null,
+      "longitude": null,
+      "id": "addr-1791551372065",
+      "created_at": "2026-10-09T13:09:32.065Z",
+      "updated_at": "2026-10-09T13:09:32.065Z"
+    }
+  ],
+  "bookings": [
+    {
+      "id": "bk-demo-1",
+      "booking_reference": "ION-IRN-101",
+      "user_id": "p0000000-0000-0000-0000-000000000002",
+      "service_id": "s2222222-2222-2222-2222-222222222222",
+      "address_id": "addr-demo-1",
+      "booking_date": "2026-10-01",
+      "time_slot": "06:00 PM - 07:00 PM",
+      "status": "COMPLETED",
+      "customer_notes": "Office shirts and formal trousers",
+      "total_amount": 50,
+      "pricing_type": "PAY_PER_ORDER",
+      "pairs_count": 2,
+      "garments_count": 4,
+      "unit_price": 25,
+      "subtotal": 50,
+      "discount_amount": 0,
+      "final_payable_amount": 50,
+      "payment_status": "PAID",
+      "worker_id": "p0000000-0000-0000-0000-000000000003",
+      "worker_name": "Ramesh Kumar",
+      "worker_payout": 50,
+      "created_at": "2026-10-01T10:00:00.000Z",
+      "updated_at": "2026-10-01T19:00:00.000Z"
+    },
+    {
+      "id": "bk-demo-2",
+      "booking_reference": "ION-IRN-102",
+      "user_id": "p0000000-0000-0000-0000-000000000002",
+      "service_id": "s2222222-2222-2222-2222-222222222222",
+      "address_id": "addr-demo-1",
+      "booking_date": "2026-10-03",
+      "time_slot": "07:00 PM - 08:00 PM",
+      "status": "COMPLETED",
+      "customer_notes": "Trousers and shirts",
+      "total_amount": 75,
+      "pricing_type": "PAY_PER_ORDER",
+      "pairs_count": 3,
+      "garments_count": 6,
+      "unit_price": 25,
+      "subtotal": 75,
+      "discount_amount": 0,
+      "final_payable_amount": 75,
+      "payment_status": "PAID",
+      "worker_id": "p0000000-0000-0000-0000-000000000003",
+      "worker_name": "Ramesh Kumar",
+      "worker_payout": 65,
+      "created_at": "2026-10-03T10:00:00.000Z",
+      "updated_at": "2026-10-03T20:00:00.000Z"
+    },
+    {
+      "id": "bk-demo-3",
+      "booking_reference": "ION-IRN-103",
+      "user_id": "p0000000-0000-0000-0000-000000000002",
+      "service_id": "s2222222-2222-2222-2222-222222222222",
+      "address_id": "addr-demo-1",
+      "booking_date": "2026-10-06",
+      "time_slot": "08:00 PM - 09:00 PM",
+      "status": "COMPLETED",
+      "customer_notes": "Weekend party wear",
+      "total_amount": 25,
+      "pricing_type": "PAY_PER_ORDER",
+      "pairs_count": 1,
+      "garments_count": 2,
+      "unit_price": 25,
+      "subtotal": 25,
+      "discount_amount": 0,
+      "final_payable_amount": 25,
+      "payment_status": "PAID",
+      "worker_id": "p0000000-0000-0000-0000-000000000003",
+      "worker_name": "Ramesh Kumar",
+      "worker_payout": 35,
+      "created_at": "2026-10-06T10:00:00.000Z",
+      "updated_at": "2026-10-06T21:00:00.000Z"
+    },
+    {
+      "booking_reference": "TEST-ORD-1",
+      "user_id": "test-user-1791549072140",
+      "service_id": "s2222222-2222-2222-2222-222222222222",
+      "address_id": "addr-demo-1",
+      "booking_date": "2026-10-10",
+      "time_slot": "06:00 PM - 07:00 PM",
+      "status": "COMPLETED",
+      "total_amount": 50,
+      "pricing_type": "PAY_PER_ORDER",
+      "pairs_count": 2,
+      "final_payable_amount": 50,
+      "payment_status": "PAID",
+      "id": "bk-1791549072142-423",
+      "worker_payout": 50,
+      "created_at": "2026-10-09T12:31:12.142Z",
+      "updated_at": "2026-10-09T12:31:12.142Z"
+    },
+    {
+      "booking_reference": "TEST-ORD-2",
+      "user_id": "test-user-1791549072140",
+      "service_id": "s2222222-2222-2222-2222-222222222222",
+      "address_id": "addr-demo-1",
+      "booking_date": "2026-10-10",
+      "time_slot": "06:00 PM - 07:00 PM",
+      "status": "COMPLETED",
+      "total_amount": 50,
+      "pricing_type": "PAY_PER_ORDER",
+      "pairs_count": 2,
+      "final_payable_amount": 50,
+      "payment_status": "PAID",
+      "id": "bk-1791549072146-749",
+      "worker_payout": 50,
+      "created_at": "2026-10-09T12:31:12.146Z",
+      "updated_at": "2026-10-09T12:31:12.146Z"
+    },
+    {
+      "booking_reference": "TEST-ORD-3",
+      "user_id": "test-user-1791549072140",
+      "service_id": "s2222222-2222-2222-2222-222222222222",
+      "address_id": "addr-demo-1",
+      "booking_date": "2026-10-10",
+      "time_slot": "06:00 PM - 07:00 PM",
+      "status": "COMPLETED",
+      "total_amount": 50,
+      "pricing_type": "PAY_PER_ORDER",
+      "pairs_count": 2,
+      "final_payable_amount": 50,
+      "payment_status": "PAID",
+      "id": "bk-1791549072149-640",
+      "worker_payout": 50,
+      "created_at": "2026-10-09T12:31:12.149Z",
+      "updated_at": "2026-10-09T12:31:12.149Z"
+    },
+    {
+      "booking_reference": "TEST-CANCELLED",
+      "user_id": "test-user-1791549072140",
+      "service_id": "s2222222-2222-2222-2222-222222222222",
+      "address_id": "addr-demo-1",
+      "booking_date": "2026-10-10",
+      "time_slot": "06:00 PM - 07:00 PM",
+      "status": "CANCELLED",
+      "total_amount": 50,
+      "pricing_type": "PAY_PER_ORDER",
+      "pairs_count": 2,
+      "final_payable_amount": 50,
+      "payment_status": "PAID",
+      "id": "bk-1791549072153-781",
+      "worker_payout": 50,
+      "created_at": "2026-10-09T12:31:12.153Z",
+      "updated_at": "2026-10-09T12:31:12.153Z"
+    },
+    {
+      "booking_reference": "TEST-UNPAID",
+      "user_id": "test-user-1791549072140",
+      "service_id": "s2222222-2222-2222-2222-222222222222",
+      "address_id": "addr-demo-1",
+      "booking_date": "2026-10-10",
+      "time_slot": "06:00 PM - 07:00 PM",
+      "status": "COMPLETED",
+      "total_amount": 50,
+      "pricing_type": "PAY_PER_ORDER",
+      "pairs_count": 2,
+      "final_payable_amount": 50,
+      "payment_status": "FAILED",
+      "id": "bk-1791549072155-515",
+      "worker_payout": 50,
+      "created_at": "2026-10-09T12:31:12.155Z",
+      "updated_at": "2026-10-09T12:31:12.155Z"
+    },
+    {
+      "booking_reference": "TEST-ORD-4",
+      "user_id": "test-user-1791549072140",
+      "service_id": "s2222222-2222-2222-2222-222222222222",
+      "address_id": "addr-demo-1",
+      "booking_date": "2026-10-10",
+      "time_slot": "06:00 PM - 07:00 PM",
+      "status": "COMPLETED",
+      "total_amount": 25,
+      "pricing_type": "PAY_PER_ORDER",
+      "pairs_count": 1,
+      "final_payable_amount": 25,
+      "payment_status": "PAID",
+      "id": "bk-1791549072158-948",
+      "worker_payout": 35,
+      "created_at": "2026-10-09T12:31:12.158Z",
+      "updated_at": "2026-10-09T12:31:12.158Z"
+    },
+    {
+      "booking_reference": "ION-SUB-WORKER-TEST",
+      "user_id": "sub-user-1791549072171",
+      "service_id": "s2222222-2222-2222-2222-222222222222",
+      "address_id": "addr-demo-1",
+      "booking_date": "2026-10-12",
+      "time_slot": "06:00 PM - 07:00 PM",
+      "status": "PENDING",
+      "pricing_type": "SUBSCRIPTION",
+      "garments_count": 10,
+      "pairs_count": 5,
+      "final_payable_amount": 0,
+      "payment_status": "PAID",
+      "id": "bk-1791549072177-328",
+      "worker_payout": 95,
+      "created_at": "2026-10-09T12:31:12.177Z",
+      "updated_at": "2026-10-09T12:31:12.177Z"
+    },
+    {
+      "booking_reference": "ION-FREE-PAYOUT-TEST",
+      "user_id": "test-user-1791549072140",
+      "service_id": "s2222222-2222-2222-2222-222222222222",
+      "address_id": "addr-demo-1",
+      "booking_date": "2026-10-12",
+      "time_slot": "07:00 PM - 08:00 PM",
+      "status": "PENDING",
+      "pricing_type": "PAY_PER_ORDER",
+      "pairs_count": 3,
+      "subtotal": 75,
+      "discount_amount": 75,
+      "final_payable_amount": 0,
+      "payment_status": "PAID",
+      "id": "bk-1791549072181-567",
+      "worker_payout": 65,
+      "created_at": "2026-10-09T12:31:12.181Z",
+      "updated_at": "2026-10-09T12:31:12.181Z"
+    },
+    {
+      "booking_reference": "ION-CARWASH-TEST",
+      "user_id": "test-user-1791549072140",
+      "service_id": "s1111111-1111-1111-1111-111111111111",
+      "address_id": "addr-demo-1",
+      "booking_date": "2026-10-15",
+      "time_slot": "06:00 PM - 07:00 PM",
+      "status": "PICKED_UP",
+      "total_amount": null,
+      "id": "bk-1791549072185-434",
+      "worker_payout": 250,
+      "payment_status": "PAID",
+      "created_at": "2026-10-09T12:31:12.185Z",
+      "updated_at": "2026-10-09T13:10:54.475Z",
+      "worker_id": "p0000000-0000-0000-0000-000000000003",
+      "worker_name": "Ramesh Kumar"
+    },
+    {
+      "booking_reference": "TEST-ORD-1",
+      "user_id": "test-user-1791549681777",
+      "service_id": "s2222222-2222-2222-2222-222222222222",
+      "address_id": "addr-demo-1",
+      "booking_date": "2026-10-10",
+      "time_slot": "06:00 PM - 07:00 PM",
+      "status": "COMPLETED",
+      "total_amount": 50,
+      "pricing_type": "PAY_PER_ORDER",
+      "pairs_count": 2,
+      "final_payable_amount": 50,
+      "payment_status": "PAID",
+      "id": "bk-1791549681778-133",
+      "worker_payout": 50,
+      "created_at": "2026-10-09T12:41:21.778Z",
+      "updated_at": "2026-10-09T12:41:21.778Z"
+    },
+    {
+      "booking_reference": "TEST-ORD-2",
+      "user_id": "test-user-1791549681777",
+      "service_id": "s2222222-2222-2222-2222-222222222222",
+      "address_id": "addr-demo-1",
+      "booking_date": "2026-10-10",
+      "time_slot": "06:00 PM - 07:00 PM",
+      "status": "COMPLETED",
+      "total_amount": 50,
+      "pricing_type": "PAY_PER_ORDER",
+      "pairs_count": 2,
+      "final_payable_amount": 50,
+      "payment_status": "PAID",
+      "id": "bk-1791549681782-177",
+      "worker_payout": 50,
+      "created_at": "2026-10-09T12:41:21.782Z",
+      "updated_at": "2026-10-09T12:41:21.782Z"
+    },
+    {
+      "booking_reference": "TEST-ORD-3",
+      "user_id": "test-user-1791549681777",
+      "service_id": "s2222222-2222-2222-2222-222222222222",
+      "address_id": "addr-demo-1",
+      "booking_date": "2026-10-10",
+      "time_slot": "06:00 PM - 07:00 PM",
+      "status": "COMPLETED",
+      "total_amount": 50,
+      "pricing_type": "PAY_PER_ORDER",
+      "pairs_count": 2,
+      "final_payable_amount": 50,
+      "payment_status": "PAID",
+      "id": "bk-1791549681785-698",
+      "worker_payout": 50,
+      "created_at": "2026-10-09T12:41:21.785Z",
+      "updated_at": "2026-10-09T12:41:21.785Z"
+    },
+    {
+      "booking_reference": "TEST-CANCELLED",
+      "user_id": "test-user-1791549681777",
+      "service_id": "s2222222-2222-2222-2222-222222222222",
+      "address_id": "addr-demo-1",
+      "booking_date": "2026-10-10",
+      "time_slot": "06:00 PM - 07:00 PM",
+      "status": "CANCELLED",
+      "total_amount": 50,
+      "pricing_type": "PAY_PER_ORDER",
+      "pairs_count": 2,
+      "final_payable_amount": 50,
+      "payment_status": "PAID",
+      "id": "bk-1791549681787-954",
+      "worker_payout": 50,
+      "created_at": "2026-10-09T12:41:21.787Z",
+      "updated_at": "2026-10-09T12:41:21.787Z"
+    },
+    {
+      "booking_reference": "TEST-UNPAID",
+      "user_id": "test-user-1791549681777",
+      "service_id": "s2222222-2222-2222-2222-222222222222",
+      "address_id": "addr-demo-1",
+      "booking_date": "2026-10-10",
+      "time_slot": "06:00 PM - 07:00 PM",
+      "status": "COMPLETED",
+      "total_amount": 50,
+      "pricing_type": "PAY_PER_ORDER",
+      "pairs_count": 2,
+      "final_payable_amount": 50,
+      "payment_status": "FAILED",
+      "id": "bk-1791549681789-163",
+      "worker_payout": 50,
+      "created_at": "2026-10-09T12:41:21.789Z",
+      "updated_at": "2026-10-09T12:41:21.789Z"
+    },
+    {
+      "booking_reference": "TEST-ORD-4",
+      "user_id": "test-user-1791549681777",
+      "service_id": "s2222222-2222-2222-2222-222222222222",
+      "address_id": "addr-demo-1",
+      "booking_date": "2026-10-10",
+      "time_slot": "06:00 PM - 07:00 PM",
+      "status": "COMPLETED",
+      "total_amount": 25,
+      "pricing_type": "PAY_PER_ORDER",
+      "pairs_count": 1,
+      "final_payable_amount": 25,
+      "payment_status": "PAID",
+      "id": "bk-1791549681793-725",
+      "worker_payout": 35,
+      "created_at": "2026-10-09T12:41:21.793Z",
+      "updated_at": "2026-10-09T12:41:21.793Z"
+    },
+    {
+      "booking_reference": "ION-SUB-WORKER-TEST",
+      "user_id": "sub-user-1791549681804",
+      "service_id": "s2222222-2222-2222-2222-222222222222",
+      "address_id": "addr-demo-1",
+      "booking_date": "2026-10-12",
+      "time_slot": "06:00 PM - 07:00 PM",
+      "status": "PENDING",
+      "pricing_type": "SUBSCRIPTION",
+      "garments_count": 10,
+      "pairs_count": 5,
+      "final_payable_amount": 0,
+      "payment_status": "PAID",
+      "id": "bk-1791549681811-565",
+      "worker_payout": 95,
+      "created_at": "2026-10-09T12:41:21.811Z",
+      "updated_at": "2026-10-09T12:41:21.811Z"
+    },
+    {
+      "booking_reference": "ION-FREE-PAYOUT-TEST",
+      "user_id": "test-user-1791549681777",
+      "service_id": "s2222222-2222-2222-2222-222222222222",
+      "address_id": "addr-demo-1",
+      "booking_date": "2026-10-12",
+      "time_slot": "07:00 PM - 08:00 PM",
+      "status": "PENDING",
+      "pricing_type": "PAY_PER_ORDER",
+      "pairs_count": 3,
+      "subtotal": 75,
+      "discount_amount": 75,
+      "final_payable_amount": 0,
+      "payment_status": "PAID",
+      "id": "bk-1791549681815-193",
+      "worker_payout": 65,
+      "created_at": "2026-10-09T12:41:21.815Z",
+      "updated_at": "2026-10-09T12:41:21.815Z"
+    },
+    {
+      "booking_reference": "ION-CARWASH-TEST",
+      "user_id": "test-user-1791549681777",
+      "service_id": "s1111111-1111-1111-1111-111111111111",
+      "address_id": "addr-demo-1",
+      "booking_date": "2026-10-15",
+      "time_slot": "06:00 PM - 07:00 PM",
+      "status": "PENDING",
+      "total_amount": null,
+      "id": "bk-1791549681820-579",
+      "worker_payout": 250,
+      "payment_status": "PAID",
+      "created_at": "2026-10-09T12:41:21.820Z",
+      "updated_at": "2026-10-09T12:41:21.823Z",
+      "worker_id": "p0000000-0000-0000-0000-000000000003",
+      "worker_name": "Ramesh Kumar"
+    },
+    {
+      "booking_reference": "TEST-ORD-1",
+      "user_id": "test-user-1791549968553",
+      "service_id": "s2222222-2222-2222-2222-222222222222",
+      "address_id": "addr-demo-1",
+      "booking_date": "2026-10-10",
+      "time_slot": "06:00 PM - 07:00 PM",
+      "status": "COMPLETED",
+      "total_amount": 50,
+      "pricing_type": "PAY_PER_ORDER",
+      "pairs_count": 2,
+      "final_payable_amount": 50,
+      "payment_status": "PAID",
+      "id": "bk-1791549968557-942",
+      "worker_payout": 50,
+      "created_at": "2026-10-09T12:46:08.557Z",
+      "updated_at": "2026-10-09T12:46:08.557Z"
+    },
+    {
+      "booking_reference": "TEST-ORD-2",
+      "user_id": "test-user-1791549968553",
+      "service_id": "s2222222-2222-2222-2222-222222222222",
+      "address_id": "addr-demo-1",
+      "booking_date": "2026-10-10",
+      "time_slot": "06:00 PM - 07:00 PM",
+      "status": "COMPLETED",
+      "total_amount": 50,
+      "pricing_type": "PAY_PER_ORDER",
+      "pairs_count": 2,
+      "final_payable_amount": 50,
+      "payment_status": "PAID",
+      "id": "bk-1791549968565-525",
+      "worker_payout": 50,
+      "created_at": "2026-10-09T12:46:08.565Z",
+      "updated_at": "2026-10-09T12:46:08.565Z"
+    },
+    {
+      "booking_reference": "TEST-ORD-3",
+      "user_id": "test-user-1791549968553",
+      "service_id": "s2222222-2222-2222-2222-222222222222",
+      "address_id": "addr-demo-1",
+      "booking_date": "2026-10-10",
+      "time_slot": "06:00 PM - 07:00 PM",
+      "status": "COMPLETED",
+      "total_amount": 50,
+      "pricing_type": "PAY_PER_ORDER",
+      "pairs_count": 2,
+      "final_payable_amount": 50,
+      "payment_status": "PAID",
+      "id": "bk-1791549968568-964",
+      "worker_payout": 50,
+      "created_at": "2026-10-09T12:46:08.568Z",
+      "updated_at": "2026-10-09T12:46:08.568Z"
+    },
+    {
+      "booking_reference": "TEST-CANCELLED",
+      "user_id": "test-user-1791549968553",
+      "service_id": "s2222222-2222-2222-2222-222222222222",
+      "address_id": "addr-demo-1",
+      "booking_date": "2026-10-10",
+      "time_slot": "06:00 PM - 07:00 PM",
+      "status": "CANCELLED",
+      "total_amount": 50,
+      "pricing_type": "PAY_PER_ORDER",
+      "pairs_count": 2,
+      "final_payable_amount": 50,
+      "payment_status": "PAID",
+      "id": "bk-1791549968573-289",
+      "worker_payout": 50,
+      "created_at": "2026-10-09T12:46:08.573Z",
+      "updated_at": "2026-10-09T12:46:08.573Z"
+    },
+    {
+      "booking_reference": "TEST-UNPAID",
+      "user_id": "test-user-1791549968553",
+      "service_id": "s2222222-2222-2222-2222-222222222222",
+      "address_id": "addr-demo-1",
+      "booking_date": "2026-10-10",
+      "time_slot": "06:00 PM - 07:00 PM",
+      "status": "COMPLETED",
+      "total_amount": 50,
+      "pricing_type": "PAY_PER_ORDER",
+      "pairs_count": 2,
+      "final_payable_amount": 50,
+      "payment_status": "FAILED",
+      "id": "bk-1791549968576-861",
+      "worker_payout": 50,
+      "created_at": "2026-10-09T12:46:08.576Z",
+      "updated_at": "2026-10-09T12:46:08.576Z"
+    },
+    {
+      "booking_reference": "TEST-ORD-4",
+      "user_id": "test-user-1791549968553",
+      "service_id": "s2222222-2222-2222-2222-222222222222",
+      "address_id": "addr-demo-1",
+      "booking_date": "2026-10-10",
+      "time_slot": "06:00 PM - 07:00 PM",
+      "status": "COMPLETED",
+      "total_amount": 25,
+      "pricing_type": "PAY_PER_ORDER",
+      "pairs_count": 1,
+      "final_payable_amount": 25,
+      "payment_status": "PAID",
+      "id": "bk-1791549968581-969",
+      "worker_payout": 35,
+      "created_at": "2026-10-09T12:46:08.581Z",
+      "updated_at": "2026-10-09T12:46:08.581Z"
+    },
+    {
+      "booking_reference": "ION-SUB-WORKER-TEST",
+      "user_id": "sub-user-1791549968597",
+      "service_id": "s2222222-2222-2222-2222-222222222222",
+      "address_id": "addr-demo-1",
+      "booking_date": "2026-10-12",
+      "time_slot": "06:00 PM - 07:00 PM",
+      "status": "PENDING",
+      "pricing_type": "SUBSCRIPTION",
+      "garments_count": 10,
+      "pairs_count": 5,
+      "final_payable_amount": 0,
+      "payment_status": "PAID",
+      "id": "bk-1791549968608-713",
+      "worker_payout": 95,
+      "created_at": "2026-10-09T12:46:08.608Z",
+      "updated_at": "2026-10-09T12:46:08.608Z"
+    },
+    {
+      "booking_reference": "ION-FREE-PAYOUT-TEST",
+      "user_id": "test-user-1791549968553",
+      "service_id": "s2222222-2222-2222-2222-222222222222",
+      "address_id": "addr-demo-1",
+      "booking_date": "2026-10-12",
+      "time_slot": "07:00 PM - 08:00 PM",
+      "status": "PENDING",
+      "pricing_type": "PAY_PER_ORDER",
+      "pairs_count": 3,
+      "subtotal": 75,
+      "discount_amount": 75,
+      "final_payable_amount": 0,
+      "payment_status": "PAID",
+      "id": "bk-1791549968614-270",
+      "worker_payout": 65,
+      "created_at": "2026-10-09T12:46:08.614Z",
+      "updated_at": "2026-10-09T12:46:08.614Z"
+    },
+    {
+      "booking_reference": "ION-CARWASH-TEST",
+      "user_id": "test-user-1791549968553",
+      "service_id": "s1111111-1111-1111-1111-111111111111",
+      "address_id": "addr-demo-1",
+      "booking_date": "2026-10-15",
+      "time_slot": "06:00 PM - 07:00 PM",
+      "status": "PENDING",
+      "total_amount": null,
+      "id": "bk-1791549968619-172",
+      "worker_payout": 250,
+      "payment_status": "PAID",
+      "created_at": "2026-10-09T12:46:08.618Z",
+      "updated_at": "2026-10-09T12:46:08.624Z",
+      "worker_id": "p0000000-0000-0000-0000-000000000003",
+      "worker_name": "Ramesh Kumar"
+    },
+    {
+      "booking_reference": "TEST-ORD-1",
+      "user_id": "test-user-1791549989170",
+      "service_id": "s2222222-2222-2222-2222-222222222222",
+      "address_id": "addr-demo-1",
+      "booking_date": "2026-10-10",
+      "time_slot": "06:00 PM - 07:00 PM",
+      "status": "COMPLETED",
+      "total_amount": 50,
+      "pricing_type": "PAY_PER_ORDER",
+      "pairs_count": 2,
+      "final_payable_amount": 50,
+      "payment_status": "PAID",
+      "id": "bk-1791549989172-641",
+      "worker_payout": 50,
+      "created_at": "2026-10-09T12:46:29.172Z",
+      "updated_at": "2026-10-09T12:46:29.172Z"
+    },
+    {
+      "booking_reference": "TEST-ORD-2",
+      "user_id": "test-user-1791549989170",
+      "service_id": "s2222222-2222-2222-2222-222222222222",
+      "address_id": "addr-demo-1",
+      "booking_date": "2026-10-10",
+      "time_slot": "06:00 PM - 07:00 PM",
+      "status": "COMPLETED",
+      "total_amount": 50,
+      "pricing_type": "PAY_PER_ORDER",
+      "pairs_count": 2,
+      "final_payable_amount": 50,
+      "payment_status": "PAID",
+      "id": "bk-1791549989179-368",
+      "worker_payout": 50,
+      "created_at": "2026-10-09T12:46:29.179Z",
+      "updated_at": "2026-10-09T12:46:29.179Z"
+    },
+    {
+      "booking_reference": "TEST-ORD-3",
+      "user_id": "test-user-1791549989170",
+      "service_id": "s2222222-2222-2222-2222-222222222222",
+      "address_id": "addr-demo-1",
+      "booking_date": "2026-10-10",
+      "time_slot": "06:00 PM - 07:00 PM",
+      "status": "COMPLETED",
+      "total_amount": 50,
+      "pricing_type": "PAY_PER_ORDER",
+      "pairs_count": 2,
+      "final_payable_amount": 50,
+      "payment_status": "PAID",
+      "id": "bk-1791549989186-585",
+      "worker_payout": 50,
+      "created_at": "2026-10-09T12:46:29.186Z",
+      "updated_at": "2026-10-09T12:46:29.186Z"
+    },
+    {
+      "booking_reference": "TEST-CANCELLED",
+      "user_id": "test-user-1791549989170",
+      "service_id": "s2222222-2222-2222-2222-222222222222",
+      "address_id": "addr-demo-1",
+      "booking_date": "2026-10-10",
+      "time_slot": "06:00 PM - 07:00 PM",
+      "status": "CANCELLED",
+      "total_amount": 50,
+      "pricing_type": "PAY_PER_ORDER",
+      "pairs_count": 2,
+      "final_payable_amount": 50,
+      "payment_status": "PAID",
+      "id": "bk-1791549989192-953",
+      "worker_payout": 50,
+      "created_at": "2026-10-09T12:46:29.192Z",
+      "updated_at": "2026-10-09T12:46:29.192Z"
+    },
+    {
+      "booking_reference": "TEST-UNPAID",
+      "user_id": "test-user-1791549989170",
+      "service_id": "s2222222-2222-2222-2222-222222222222",
+      "address_id": "addr-demo-1",
+      "booking_date": "2026-10-10",
+      "time_slot": "06:00 PM - 07:00 PM",
+      "status": "COMPLETED",
+      "total_amount": 50,
+      "pricing_type": "PAY_PER_ORDER",
+      "pairs_count": 2,
+      "final_payable_amount": 50,
+      "payment_status": "FAILED",
+      "id": "bk-1791549989195-126",
+      "worker_payout": 50,
+      "created_at": "2026-10-09T12:46:29.195Z",
+      "updated_at": "2026-10-09T12:46:29.195Z"
+    },
+    {
+      "booking_reference": "TEST-ORD-4",
+      "user_id": "test-user-1791549989170",
+      "service_id": "s2222222-2222-2222-2222-222222222222",
+      "address_id": "addr-demo-1",
+      "booking_date": "2026-10-10",
+      "time_slot": "06:00 PM - 07:00 PM",
+      "status": "COMPLETED",
+      "total_amount": 25,
+      "pricing_type": "PAY_PER_ORDER",
+      "pairs_count": 1,
+      "final_payable_amount": 25,
+      "payment_status": "PAID",
+      "id": "bk-1791549989201-934",
+      "worker_payout": 35,
+      "created_at": "2026-10-09T12:46:29.201Z",
+      "updated_at": "2026-10-09T12:46:29.201Z"
+    },
+    {
+      "booking_reference": "ION-SUB-WORKER-TEST",
+      "user_id": "sub-user-1791549989216",
+      "service_id": "s2222222-2222-2222-2222-222222222222",
+      "address_id": "addr-demo-1",
+      "booking_date": "2026-10-12",
+      "time_slot": "06:00 PM - 07:00 PM",
+      "status": "PENDING",
+      "pricing_type": "SUBSCRIPTION",
+      "garments_count": 10,
+      "pairs_count": 5,
+      "final_payable_amount": 0,
+      "payment_status": "PAID",
+      "id": "bk-1791549989226-47",
+      "worker_payout": 95,
+      "created_at": "2026-10-09T12:46:29.226Z",
+      "updated_at": "2026-10-09T12:46:29.226Z"
+    },
+    {
+      "booking_reference": "ION-FREE-PAYOUT-TEST",
+      "user_id": "test-user-1791549989170",
+      "service_id": "s2222222-2222-2222-2222-222222222222",
+      "address_id": "addr-demo-1",
+      "booking_date": "2026-10-12",
+      "time_slot": "07:00 PM - 08:00 PM",
+      "status": "PENDING",
+      "pricing_type": "PAY_PER_ORDER",
+      "pairs_count": 3,
+      "subtotal": 75,
+      "discount_amount": 75,
+      "final_payable_amount": 0,
+      "payment_status": "PAID",
+      "id": "bk-1791549989231-933",
+      "worker_payout": 65,
+      "created_at": "2026-10-09T12:46:29.231Z",
+      "updated_at": "2026-10-09T12:46:29.231Z"
+    },
+    {
+      "booking_reference": "ION-CARWASH-TEST",
+      "user_id": "test-user-1791549989170",
+      "service_id": "s1111111-1111-1111-1111-111111111111",
+      "address_id": "addr-demo-1",
+      "booking_date": "2026-10-15",
+      "time_slot": "06:00 PM - 07:00 PM",
+      "status": "PENDING",
+      "total_amount": null,
+      "id": "bk-1791549989238-346",
+      "worker_payout": 250,
+      "payment_status": "PAID",
+      "created_at": "2026-10-09T12:46:29.238Z",
+      "updated_at": "2026-10-09T12:46:29.242Z",
+      "worker_id": "p0000000-0000-0000-0000-000000000003",
+      "worker_name": "Ramesh Kumar"
+    },
+    {
+      "booking_reference": "TEST-ORD-1",
+      "user_id": "test-user-1791550091137",
+      "service_id": "s2222222-2222-2222-2222-222222222222",
+      "address_id": "addr-demo-1",
+      "booking_date": "2026-10-10",
+      "time_slot": "06:00 PM - 07:00 PM",
+      "status": "COMPLETED",
+      "total_amount": 50,
+      "pricing_type": "PAY_PER_ORDER",
+      "pairs_count": 2,
+      "final_payable_amount": 50,
+      "payment_status": "PAID",
+      "id": "bk-1791550091139-196",
+      "worker_payout": 50,
+      "created_at": "2026-10-09T12:48:11.139Z",
+      "updated_at": "2026-10-09T12:48:11.139Z"
+    },
+    {
+      "booking_reference": "TEST-ORD-2",
+      "user_id": "test-user-1791550091137",
+      "service_id": "s2222222-2222-2222-2222-222222222222",
+      "address_id": "addr-demo-1",
+      "booking_date": "2026-10-10",
+      "time_slot": "06:00 PM - 07:00 PM",
+      "status": "COMPLETED",
+      "total_amount": 50,
+      "pricing_type": "PAY_PER_ORDER",
+      "pairs_count": 2,
+      "final_payable_amount": 50,
+      "payment_status": "PAID",
+      "id": "bk-1791550091143-769",
+      "worker_payout": 50,
+      "created_at": "2026-10-09T12:48:11.143Z",
+      "updated_at": "2026-10-09T12:48:11.143Z"
+    },
+    {
+      "booking_reference": "TEST-ORD-3",
+      "user_id": "test-user-1791550091137",
+      "service_id": "s2222222-2222-2222-2222-222222222222",
+      "address_id": "addr-demo-1",
+      "booking_date": "2026-10-10",
+      "time_slot": "06:00 PM - 07:00 PM",
+      "status": "COMPLETED",
+      "total_amount": 50,
+      "pricing_type": "PAY_PER_ORDER",
+      "pairs_count": 2,
+      "final_payable_amount": 50,
+      "payment_status": "PAID",
+      "id": "bk-1791550091149-619",
+      "worker_payout": 50,
+      "created_at": "2026-10-09T12:48:11.149Z",
+      "updated_at": "2026-10-09T12:48:11.149Z"
+    },
+    {
+      "booking_reference": "TEST-CANCELLED",
+      "user_id": "test-user-1791550091137",
+      "service_id": "s2222222-2222-2222-2222-222222222222",
+      "address_id": "addr-demo-1",
+      "booking_date": "2026-10-10",
+      "time_slot": "06:00 PM - 07:00 PM",
+      "status": "CANCELLED",
+      "total_amount": 50,
+      "pricing_type": "PAY_PER_ORDER",
+      "pairs_count": 2,
+      "final_payable_amount": 50,
+      "payment_status": "PAID",
+      "id": "bk-1791550091154-171",
+      "worker_payout": 50,
+      "created_at": "2026-10-09T12:48:11.154Z",
+      "updated_at": "2026-10-09T12:48:11.154Z"
+    },
+    {
+      "booking_reference": "TEST-UNPAID",
+      "user_id": "test-user-1791550091137",
+      "service_id": "s2222222-2222-2222-2222-222222222222",
+      "address_id": "addr-demo-1",
+      "booking_date": "2026-10-10",
+      "time_slot": "06:00 PM - 07:00 PM",
+      "status": "COMPLETED",
+      "total_amount": 50,
+      "pricing_type": "PAY_PER_ORDER",
+      "pairs_count": 2,
+      "final_payable_amount": 50,
+      "payment_status": "FAILED",
+      "id": "bk-1791550091159-958",
+      "worker_payout": 50,
+      "created_at": "2026-10-09T12:48:11.159Z",
+      "updated_at": "2026-10-09T12:48:11.159Z"
+    },
+    {
+      "booking_reference": "TEST-ORD-4",
+      "user_id": "test-user-1791550091137",
+      "service_id": "s2222222-2222-2222-2222-222222222222",
+      "address_id": "addr-demo-1",
+      "booking_date": "2026-10-10",
+      "time_slot": "06:00 PM - 07:00 PM",
+      "status": "COMPLETED",
+      "total_amount": 25,
+      "pricing_type": "PAY_PER_ORDER",
+      "pairs_count": 1,
+      "final_payable_amount": 25,
+      "payment_status": "PAID",
+      "id": "bk-1791550091166-383",
+      "worker_payout": 35,
+      "created_at": "2026-10-09T12:48:11.166Z",
+      "updated_at": "2026-10-09T12:48:11.166Z"
+    },
+    {
+      "booking_reference": "ION-SUB-WORKER-TEST",
+      "user_id": "sub-user-1791550091183",
+      "service_id": "s2222222-2222-2222-2222-222222222222",
+      "address_id": "addr-demo-1",
+      "booking_date": "2026-10-12",
+      "time_slot": "06:00 PM - 07:00 PM",
+      "status": "PENDING",
+      "pricing_type": "SUBSCRIPTION",
+      "garments_count": 10,
+      "pairs_count": 5,
+      "final_payable_amount": 0,
+      "payment_status": "PAID",
+      "id": "bk-1791550091191-897",
+      "worker_payout": 95,
+      "created_at": "2026-10-09T12:48:11.191Z",
+      "updated_at": "2026-10-09T12:48:11.191Z"
+    },
+    {
+      "booking_reference": "ION-FREE-PAYOUT-TEST",
+      "user_id": "test-user-1791550091137",
+      "service_id": "s2222222-2222-2222-2222-222222222222",
+      "address_id": "addr-demo-1",
+      "booking_date": "2026-10-12",
+      "time_slot": "07:00 PM - 08:00 PM",
+      "status": "PENDING",
+      "pricing_type": "PAY_PER_ORDER",
+      "pairs_count": 3,
+      "subtotal": 75,
+      "discount_amount": 75,
+      "final_payable_amount": 0,
+      "payment_status": "PAID",
+      "id": "bk-1791550091204-736",
+      "worker_payout": 65,
+      "created_at": "2026-10-09T12:48:11.204Z",
+      "updated_at": "2026-10-09T12:48:11.204Z"
+    },
+    {
+      "booking_reference": "ION-CARWASH-TEST",
+      "user_id": "test-user-1791550091137",
+      "service_id": "s1111111-1111-1111-1111-111111111111",
+      "address_id": "addr-demo-1",
+      "booking_date": "2026-10-15",
+      "time_slot": "06:00 PM - 07:00 PM",
+      "status": "PENDING",
+      "total_amount": null,
+      "id": "bk-1791550091209-364",
+      "worker_payout": 250,
+      "payment_status": "PAID",
+      "created_at": "2026-10-09T12:48:11.209Z",
+      "updated_at": "2026-10-09T12:48:11.221Z",
+      "worker_id": "p0000000-0000-0000-0000-000000000003",
+      "worker_name": "Ramesh Kumar"
+    },
+    {
+      "booking_reference": "ION-2026-420615",
+      "user_id": "p-1791550428125",
+      "service_id": "s1111111-1111-1111-1111-111111111111",
+      "address_id": "addr-1791551372065",
+      "booking_date": "2026-10-12",
+      "time_slot": "10:00 PM - 11:00 PM",
+      "status": "PICKED_UP",
+      "customer_notes": "DO GOOD SERVICE",
+      "total_amount": null,
+      "pricing_type": "PAY_PER_ORDER",
+      "pairs_count": null,
+      "garments_count": null,
+      "unit_price": null,
+      "subtotal": null,
+      "discount_amount": 0,
+      "reward_id_applied": null,
+      "subscription_id_applied": null,
+      "overage_garments": null,
+      "overage_charge": null,
+      "final_payable_amount": null,
+      "payment_status": "PAID",
+      "id": "bk-1791551372072-139",
+      "worker_payout": 250,
+      "created_at": "2026-10-09T13:09:32.072Z",
+      "updated_at": "2026-10-09T13:20:22.536Z"
+    },
+    {
+      "booking_reference": "TEST-ORD-1",
+      "user_id": "test-user-1791552331808",
+      "service_id": "s2222222-2222-2222-2222-222222222222",
+      "address_id": "addr-demo-1",
+      "booking_date": "2026-10-10",
+      "time_slot": "06:00 PM - 07:00 PM",
+      "status": "COMPLETED",
+      "total_amount": 50,
+      "pricing_type": "PAY_PER_ORDER",
+      "pairs_count": 2,
+      "final_payable_amount": 50,
+      "payment_status": "PAID",
+      "id": "bk-1791552331815-435",
+      "worker_payout": 50,
+      "created_at": "2026-10-09T13:25:31.815Z",
+      "updated_at": "2026-10-09T13:25:31.815Z"
+    },
+    {
+      "booking_reference": "TEST-ORD-2",
+      "user_id": "test-user-1791552331808",
+      "service_id": "s2222222-2222-2222-2222-222222222222",
+      "address_id": "addr-demo-1",
+      "booking_date": "2026-10-10",
+      "time_slot": "06:00 PM - 07:00 PM",
+      "status": "COMPLETED",
+      "total_amount": 50,
+      "pricing_type": "PAY_PER_ORDER",
+      "pairs_count": 2,
+      "final_payable_amount": 50,
+      "payment_status": "PAID",
+      "id": "bk-1791552331823-959",
+      "worker_payout": 50,
+      "created_at": "2026-10-09T13:25:31.823Z",
+      "updated_at": "2026-10-09T13:25:31.823Z"
+    },
+    {
+      "booking_reference": "TEST-ORD-3",
+      "user_id": "test-user-1791552331808",
+      "service_id": "s2222222-2222-2222-2222-222222222222",
+      "address_id": "addr-demo-1",
+      "booking_date": "2026-10-10",
+      "time_slot": "06:00 PM - 07:00 PM",
+      "status": "COMPLETED",
+      "total_amount": 50,
+      "pricing_type": "PAY_PER_ORDER",
+      "pairs_count": 2,
+      "final_payable_amount": 50,
+      "payment_status": "PAID",
+      "id": "bk-1791552331831-675",
+      "worker_payout": 50,
+      "created_at": "2026-10-09T13:25:31.830Z",
+      "updated_at": "2026-10-09T13:25:31.830Z"
+    },
+    {
+      "booking_reference": "TEST-CANCELLED",
+      "user_id": "test-user-1791552331808",
+      "service_id": "s2222222-2222-2222-2222-222222222222",
+      "address_id": "addr-demo-1",
+      "booking_date": "2026-10-10",
+      "time_slot": "06:00 PM - 07:00 PM",
+      "status": "CANCELLED",
+      "total_amount": 50,
+      "pricing_type": "PAY_PER_ORDER",
+      "pairs_count": 2,
+      "final_payable_amount": 50,
+      "payment_status": "PAID",
+      "id": "bk-1791552331837-994",
+      "worker_payout": 50,
+      "created_at": "2026-10-09T13:25:31.837Z",
+      "updated_at": "2026-10-09T13:25:31.837Z"
+    },
+    {
+      "booking_reference": "TEST-UNPAID",
+      "user_id": "test-user-1791552331808",
+      "service_id": "s2222222-2222-2222-2222-222222222222",
+      "address_id": "addr-demo-1",
+      "booking_date": "2026-10-10",
+      "time_slot": "06:00 PM - 07:00 PM",
+      "status": "COMPLETED",
+      "total_amount": 50,
+      "pricing_type": "PAY_PER_ORDER",
+      "pairs_count": 2,
+      "final_payable_amount": 50,
+      "payment_status": "FAILED",
+      "id": "bk-1791552331843-912",
+      "worker_payout": 50,
+      "created_at": "2026-10-09T13:25:31.843Z",
+      "updated_at": "2026-10-09T13:25:31.843Z"
+    },
+    {
+      "booking_reference": "TEST-ORD-4",
+      "user_id": "test-user-1791552331808",
+      "service_id": "s2222222-2222-2222-2222-222222222222",
+      "address_id": "addr-demo-1",
+      "booking_date": "2026-10-10",
+      "time_slot": "06:00 PM - 07:00 PM",
+      "status": "COMPLETED",
+      "total_amount": 25,
+      "pricing_type": "PAY_PER_ORDER",
+      "pairs_count": 1,
+      "final_payable_amount": 25,
+      "payment_status": "PAID",
+      "id": "bk-1791552331851-572",
+      "worker_payout": 35,
+      "created_at": "2026-10-09T13:25:31.850Z",
+      "updated_at": "2026-10-09T13:25:31.850Z"
+    },
+    {
+      "booking_reference": "ION-SUB-WORKER-TEST",
+      "user_id": "sub-user-1791552331870",
+      "service_id": "s2222222-2222-2222-2222-222222222222",
+      "address_id": "addr-demo-1",
+      "booking_date": "2026-10-12",
+      "time_slot": "06:00 PM - 07:00 PM",
+      "status": "PENDING",
+      "pricing_type": "SUBSCRIPTION",
+      "garments_count": 10,
+      "pairs_count": 5,
+      "final_payable_amount": 0,
+      "payment_status": "PAID",
+      "id": "bk-1791552331885-177",
+      "worker_payout": 95,
+      "created_at": "2026-10-09T13:25:31.885Z",
+      "updated_at": "2026-10-09T13:25:31.885Z"
+    },
+    {
+      "booking_reference": "ION-FREE-PAYOUT-TEST",
+      "user_id": "test-user-1791552331808",
+      "service_id": "s2222222-2222-2222-2222-222222222222",
+      "address_id": "addr-demo-1",
+      "booking_date": "2026-10-12",
+      "time_slot": "07:00 PM - 08:00 PM",
+      "status": "PENDING",
+      "pricing_type": "PAY_PER_ORDER",
+      "pairs_count": 3,
+      "subtotal": 75,
+      "discount_amount": 75,
+      "final_payable_amount": 0,
+      "payment_status": "PAID",
+      "id": "bk-1791552331896-660",
+      "worker_payout": 65,
+      "created_at": "2026-10-09T13:25:31.896Z",
+      "updated_at": "2026-10-09T13:25:31.896Z"
+    },
+    {
+      "booking_reference": "ION-CARWASH-TEST",
+      "user_id": "test-user-1791552331808",
+      "service_id": "s1111111-1111-1111-1111-111111111111",
+      "address_id": "addr-demo-1",
+      "booking_date": "2026-10-15",
+      "time_slot": "06:00 PM - 07:00 PM",
+      "status": "COMPLETED",
+      "total_amount": null,
+      "id": "bk-1791552331903-401",
+      "worker_payout": 250,
+      "payment_status": "PAID",
+      "created_at": "2026-10-09T13:25:31.903Z",
+      "updated_at": "2026-10-09T13:50:38.273Z",
+      "worker_id": "p0000000-0000-0000-0000-000000000003",
+      "worker_name": "Ramesh Kumar"
+    }
+  ],
+  "booking_items": [
+    {
+      "id": "bki-demo-1",
+      "booking_id": "bk-demo-1",
+      "item_name": "Shirts (2 pairs)",
+      "quantity": 2,
+      "unit_price": 25,
+      "created_at": "2026-10-01T10:00:00.000Z"
+    },
+    {
+      "id": "bki-demo-2",
+      "booking_id": "bk-demo-2",
+      "item_name": "Trousers & Chinos (3 pairs)",
+      "quantity": 3,
+      "unit_price": 25,
+      "created_at": "2026-10-03T10:00:00.000Z"
+    },
+    {
+      "id": "bki-demo-3",
+      "booking_id": "bk-demo-3",
+      "item_name": "Shirts (1 pair)",
+      "quantity": 1,
+      "unit_price": 25,
+      "created_at": "2026-10-06T10:00:00.000Z"
+    },
+    {
+      "id": "bki-bk-1791551372072-139-0",
+      "booking_id": "bk-1791551372072-139",
+      "item_name": "Exterior Wash & Dry",
+      "quantity": 1,
+      "unit_price": null,
+      "created_at": "2026-10-09T13:09:32.072Z"
+    },
+    {
+      "id": "bki-bk-1791551372072-139-1",
+      "booking_id": "bk-1791551372072-139",
+      "item_name": "Interior Vacuuming",
+      "quantity": 1,
+      "unit_price": null,
+      "created_at": "2026-10-09T13:09:32.072Z"
+    },
+    {
+      "id": "bki-bk-1791551372072-139-2",
+      "booking_id": "bk-1791551372072-139",
+      "item_name": "Dashboard & Trim Cleaning",
+      "quantity": 1,
+      "unit_price": null,
+      "created_at": "2026-10-09T13:09:32.072Z"
+    },
+    {
+      "id": "bki-bk-1791551372072-139-3",
+      "booking_id": "bk-1791551372072-139",
+      "item_name": "Tire & Rim Cleaning",
+      "quantity": 1,
+      "unit_price": null,
+      "created_at": "2026-10-09T13:09:32.072Z"
+    },
+    {
+      "id": "bki-bk-1791551372072-139-4",
+      "booking_id": "bk-1791551372072-139",
+      "item_name": "Spotless Finish",
+      "quantity": 1,
+      "unit_price": null,
+      "created_at": "2026-10-09T13:09:32.072Z"
+    }
+  ],
+  "time_slots": [
+    {
+      "id": "ts-1",
+      "slot_time": "06:00 PM - 07:00 PM",
+      "capacity": 5,
+      "is_active": true,
+      "display_order": 1,
+      "created_at": "2026-10-05T13:44:08.060Z",
+      "updated_at": "2026-10-05T13:44:08.060Z"
+    },
+    {
+      "id": "ts-2",
+      "slot_time": "07:00 PM - 08:00 PM",
+      "capacity": 5,
+      "is_active": true,
+      "display_order": 2,
+      "created_at": "2026-10-05T13:44:08.060Z",
+      "updated_at": "2026-10-05T13:44:08.060Z"
+    },
+    {
+      "id": "ts-3",
+      "slot_time": "08:00 PM - 09:00 PM",
+      "capacity": 5,
+      "is_active": true,
+      "display_order": 3,
+      "created_at": "2026-10-05T13:44:08.060Z",
+      "updated_at": "2026-10-05T13:44:08.060Z"
+    },
+    {
+      "id": "ts-4",
+      "slot_time": "09:00 PM - 10:00 PM",
+      "capacity": 5,
+      "is_active": true,
+      "display_order": 4,
+      "created_at": "2026-10-05T13:44:08.060Z",
+      "updated_at": "2026-10-05T13:44:08.060Z"
+    },
+    {
+      "id": "ts-5",
+      "slot_time": "10:00 PM - 11:00 PM",
+      "capacity": 5,
+      "is_active": true,
+      "display_order": 5,
+      "created_at": "2026-10-05T13:44:08.060Z",
+      "updated_at": "2026-10-05T13:44:08.060Z"
+    }
+  ],
+  "service_areas": [
+    {
+      "id": "sa-1",
+      "area_name": "Kompally",
+      "city": "Hyderabad",
+      "pincode": "500100",
+      "is_active": true,
+      "created_at": "2026-10-05T13:44:08.060Z",
+      "updated_at": "2026-10-05T13:44:08.060Z"
+    }
+  ],
+  "business_hours": [
+    {
+      "id": "bh-1",
+      "day_of_week": "Daily (Mon - Sun)",
+      "opening_time": "18:00",
+      "closing_time": "23:00",
+      "is_open": true,
+      "note": "6 PM – 11 PM (Weekends Available)",
+      "created_at": "2026-10-05T13:44:08.061Z",
+      "updated_at": "2026-10-05T13:44:08.061Z"
+    }
+  ],
+  "contact_messages": [
+    {
+      "id": "msg-1791551984946",
+      "name": "Yaswanth Kuncham",
+      "phone": "8790111220",
+      "email": "yaswanthkuncham7@gmail.com",
+      "message": "BAD SERVICE",
+      "status": "unread",
+      "created_at": "2026-10-09T13:19:44.946Z"
+    }
+  ],
+  "reviews": [],
+  "ironing_config": {
+    "price_per_pair": 25,
+    "pair_unit_name": "pair of garments",
+    "pair_definition": "One pair represents 2 standard garments (e.g. 1 shirt + 1 trouser or 2 formal items) as business standard.",
+    "free_order_threshold": 4,
+    "free_order_category": "ironing",
+    "free_order_enabled": true,
+    "free_order_validity_days": 30,
+    "allow_combine_subscription_and_reward": false,
+    "worker_base_payout": 20,
+    "worker_payout_per_pair": 15,
+    "overage_price_per_garment": 15,
+    "updated_at": "2026-10-09T17:30:00.000Z"
+  },
+  "subscription_plans": [
+    {
+      "id": "sub-plan-starter",
+      "slug": "starter",
+      "name": "Starter",
+      "category": "ironing",
+      "monthly_price": 199,
+      "garment_allowance": 20,
+      "allowance_type": "fixed",
+      "description": "Suitable for customers with light ironing needs.",
+      "is_active": true
+    },
+    {
+      "id": "sub-plan-standard",
+      "slug": "standard",
+      "name": "Standard",
+      "category": "ironing",
+      "monthly_price": 349,
+      "garment_allowance": 30,
+      "allowance_type": "fixed",
+      "description": "Suitable for regular ironing requirements.",
+      "is_active": true
+    },
+    {
+      "id": "sub-plan-premium",
+      "slug": "premium",
+      "name": "Premium",
+      "category": "ironing",
+      "monthly_price": 449,
+      "garment_allowance": 40,
+      "allowance_type": "fixed",
+      "description": "Suitable for customers with higher ironing requirements (40+ garments/month).",
+      "is_active": true
+    },
+    {
+      "id": "sub-plan-starter-foam-pass",
+      "slug": "starter-foam-pass",
+      "name": "Starter Foam Pass",
+      "category": "car-wash",
+      "monthly_price": 599,
+      "wash_allowance": 3,
+      "tag": "POPULAR",
+      "savings_text": "Save ₹450 vs single bookings",
+      "description": "3 Washes/Month • Clean every 10 days • Quick exterior foam wash & glass shine",
+      "is_active": true
+    },
+    {
+      "id": "sub-plan-pro-sparkle-pass",
+      "slug": "pro-sparkle-pass",
+      "name": "Pro Sparkle Pass",
+      "category": "car-wash",
+      "monthly_price": 999,
+      "wash_allowance": 5,
+      "tag": "BEST VALUE IN KOMPALLY",
+      "savings_text": "Save ₹750 vs single bookings",
+      "description": "5 Washes/Month • Weekly wash + 1 interior wipe • Doorstep service at scheduled slots",
+      "is_active": true
+    },
+    {
+      "id": "sub-plan-complete-detailing-pass",
+      "slug": "complete-detailing-pass",
+      "name": "Complete Detailing Pass",
+      "category": "car-wash",
+      "monthly_price": 1399,
+      "wash_allowance": 5,
+      "interior_vacuums": 2,
+      "tag": "PREMIUM CARE",
+      "savings_text": "Save ₹1,100 vs single bookings",
+      "description": "5 Washes + 2 Interior Vacuums • Full deep clean, tire dressing & interior detailing",
+      "is_active": true
+    }
+  ],
+  "customer_subscriptions": [
+    {
+      "id": "sub-demo-1",
+      "user_id": "p0000000-0000-0000-0000-000000000002",
+      "plan_id": "sub-plan-starter",
+      "plan_slug": "starter",
+      "plan_name": "Starter",
+      "monthly_price": 199,
+      "included_garments": 20,
+      "garments_used": 12,
+      "garments_remaining": 8,
+      "status": "ACTIVE",
+      "start_date": "2026-10-01T00:00:00.000Z",
+      "renewal_date": "2026-11-01T00:00:00.000Z",
+      "payment_status": "PAID",
+      "auto_renew": false,
+      "created_at": "2026-10-01T00:00:00.000Z",
+      "updated_at": "2026-10-06T00:00:00.000Z"
+    },
+    {
+      "user_id": "sub-user-1791549072171",
+      "plan_id": "sub-plan-starter",
+      "plan_slug": "starter",
+      "plan_name": "Starter",
+      "monthly_price": 199,
+      "included_garments": 20,
+      "garments_used": 6,
+      "garments_remaining": 14,
+      "status": "ACTIVE",
+      "start_date": "2026-10-09T12:31:12.171Z",
+      "renewal_date": "2026-11-08T12:31:12.171Z",
+      "payment_status": "PAID",
+      "auto_renew": false,
+      "id": "sub-1791549072171-897",
+      "created_at": "2026-10-09T12:31:12.171Z",
+      "updated_at": "2026-10-09T12:31:12.174Z"
+    },
+    {
+      "user_id": "sub-user-1791549681804",
+      "plan_id": "sub-plan-starter",
+      "plan_slug": "starter",
+      "plan_name": "Starter",
+      "monthly_price": 199,
+      "included_garments": 20,
+      "garments_used": 6,
+      "garments_remaining": 14,
+      "status": "ACTIVE",
+      "start_date": "2026-10-09T12:41:21.804Z",
+      "renewal_date": "2026-11-08T12:41:21.804Z",
+      "payment_status": "PAID",
+      "auto_renew": false,
+      "id": "sub-1791549681804-126",
+      "created_at": "2026-10-09T12:41:21.804Z",
+      "updated_at": "2026-10-09T12:41:21.808Z"
+    },
+    {
+      "user_id": "sub-user-1791549968597",
+      "plan_id": "sub-plan-starter",
+      "plan_slug": "starter",
+      "plan_name": "Starter",
+      "monthly_price": 199,
+      "included_garments": 20,
+      "garments_used": 6,
+      "garments_remaining": 14,
+      "status": "ACTIVE",
+      "start_date": "2026-10-09T12:46:08.597Z",
+      "renewal_date": "2026-11-08T12:46:08.597Z",
+      "payment_status": "PAID",
+      "auto_renew": false,
+      "id": "sub-1791549968598-602",
+      "created_at": "2026-10-09T12:46:08.598Z",
+      "updated_at": "2026-10-09T12:46:08.602Z"
+    },
+    {
+      "user_id": "sub-user-1791549989216",
+      "plan_id": "sub-plan-starter",
+      "plan_slug": "starter",
+      "plan_name": "Starter",
+      "monthly_price": 199,
+      "included_garments": 20,
+      "garments_used": 6,
+      "garments_remaining": 14,
+      "status": "ACTIVE",
+      "start_date": "2026-10-09T12:46:29.216Z",
+      "renewal_date": "2026-11-08T12:46:29.216Z",
+      "payment_status": "PAID",
+      "auto_renew": false,
+      "id": "sub-1791549989217-324",
+      "created_at": "2026-10-09T12:46:29.217Z",
+      "updated_at": "2026-10-09T12:46:29.223Z"
+    },
+    {
+      "user_id": "sub-user-1791550091183",
+      "plan_id": "sub-plan-starter",
+      "plan_slug": "starter",
+      "plan_name": "Starter",
+      "monthly_price": 199,
+      "included_garments": 20,
+      "garments_used": 6,
+      "garments_remaining": 14,
+      "status": "ACTIVE",
+      "start_date": "2026-10-09T12:48:11.183Z",
+      "renewal_date": "2026-11-08T12:48:11.183Z",
+      "payment_status": "PAID",
+      "auto_renew": false,
+      "id": "sub-1791550091184-657",
+      "created_at": "2026-10-09T12:48:11.184Z",
+      "updated_at": "2026-10-09T12:48:11.188Z"
+    },
+    {
+      "user_id": "sub-user-1791552331870",
+      "plan_id": "sub-plan-starter",
+      "plan_slug": "starter",
+      "plan_name": "Starter",
+      "monthly_price": 199,
+      "included_garments": 20,
+      "garments_used": 6,
+      "garments_remaining": 14,
+      "status": "ACTIVE",
+      "start_date": "2026-10-09T13:25:31.870Z",
+      "renewal_date": "2026-11-08T13:25:31.870Z",
+      "payment_status": "PAID",
+      "auto_renew": false,
+      "id": "sub-1791552331873-40",
+      "created_at": "2026-10-09T13:25:31.872Z",
+      "updated_at": "2026-10-09T13:25:31.880Z"
+    }
+  ],
+  "subscription_usage_records": [
+    {
+      "id": "sur-demo-1",
+      "subscription_id": "sub-demo-1",
+      "user_id": "p0000000-0000-0000-0000-000000000002",
+      "booking_id": "bk-demo-1",
+      "booking_reference": "ION-IRN-101",
+      "garments_deducted": 6,
+      "notes": "Deducted for initial booking",
+      "created_at": "2026-10-01T10:00:00.000Z"
+    },
+    {
+      "id": "sur-demo-2",
+      "subscription_id": "sub-demo-1",
+      "user_id": "p0000000-0000-0000-0000-000000000002",
+      "booking_id": "bk-demo-2",
+      "booking_reference": "ION-IRN-102",
+      "garments_deducted": 6,
+      "notes": "Deducted for second booking",
+      "created_at": "2026-10-03T10:00:00.000Z"
+    },
+    {
+      "id": "sur-1791549072174-472",
+      "subscription_id": "sub-1791549072171-897",
+      "user_id": "sub-user-1791549072171",
+      "booking_id": "bk-sub-1",
+      "booking_reference": "ION-SUB-1",
+      "garments_deducted": 6,
+      "notes": "First deduction",
+      "created_at": "2026-10-09T12:31:12.174Z"
+    },
+    {
+      "id": "sur-1791549681808-785",
+      "subscription_id": "sub-1791549681804-126",
+      "user_id": "sub-user-1791549681804",
+      "booking_id": "bk-sub-1",
+      "booking_reference": "ION-SUB-1",
+      "garments_deducted": 6,
+      "notes": "First deduction",
+      "created_at": "2026-10-09T12:41:21.808Z"
+    },
+    {
+      "id": "sur-1791549968602-232",
+      "subscription_id": "sub-1791549968598-602",
+      "user_id": "sub-user-1791549968597",
+      "booking_id": "bk-sub-1",
+      "booking_reference": "ION-SUB-1",
+      "garments_deducted": 6,
+      "notes": "First deduction",
+      "created_at": "2026-10-09T12:46:08.602Z"
+    },
+    {
+      "id": "sur-1791549989223-189",
+      "subscription_id": "sub-1791549989217-324",
+      "user_id": "sub-user-1791549989216",
+      "booking_id": "bk-sub-1",
+      "booking_reference": "ION-SUB-1",
+      "garments_deducted": 6,
+      "notes": "First deduction",
+      "created_at": "2026-10-09T12:46:29.223Z"
+    },
+    {
+      "id": "sur-1791550091188-172",
+      "subscription_id": "sub-1791550091184-657",
+      "user_id": "sub-user-1791550091183",
+      "booking_id": "bk-sub-1",
+      "booking_reference": "ION-SUB-1",
+      "garments_deducted": 6,
+      "notes": "First deduction",
+      "created_at": "2026-10-09T12:48:11.188Z"
+    },
+    {
+      "id": "sur-1791552331880-286",
+      "subscription_id": "sub-1791552331873-40",
+      "user_id": "sub-user-1791552331870",
+      "booking_id": "bk-sub-1",
+      "booking_reference": "ION-SUB-1",
+      "garments_deducted": 6,
+      "notes": "First deduction",
+      "created_at": "2026-10-09T13:25:31.880Z"
+    }
+  ],
+  "free_order_rewards": [
+    {
+      "id": "rew-1791549072163-157",
+      "user_id": "test-user-1791549072140",
+      "reward_code": "FREE-5TH-184242",
+      "status": "REDEEMED",
+      "earned_at": "2026-10-09T12:31:12.163Z",
+      "expires_at": "2026-11-08T12:31:12.163Z",
+      "qualifying_order_count": 4,
+      "redeemed_at": "2026-10-09T12:31:12.167Z",
+      "redeemed_booking_id": "test-bk-free-1"
+    },
+    {
+      "id": "rew-1791549681797-750",
+      "user_id": "test-user-1791549681777",
+      "reward_code": "FREE-5TH-926751",
+      "status": "REDEEMED",
+      "earned_at": "2026-10-09T12:41:21.797Z",
+      "expires_at": "2026-11-08T12:41:21.797Z",
+      "qualifying_order_count": 4,
+      "redeemed_at": "2026-10-09T12:41:21.800Z",
+      "redeemed_booking_id": "test-bk-free-1"
+    },
+    {
+      "id": "rew-1791549968588-198",
+      "user_id": "test-user-1791549968553",
+      "reward_code": "FREE-5TH-714877",
+      "status": "REDEEMED",
+      "earned_at": "2026-10-09T12:46:08.588Z",
+      "expires_at": "2026-11-08T12:46:08.588Z",
+      "qualifying_order_count": 4,
+      "redeemed_at": "2026-10-09T12:46:08.593Z",
+      "redeemed_booking_id": "test-bk-free-1"
+    },
+    {
+      "id": "rew-1791549989208-817",
+      "user_id": "test-user-1791549989170",
+      "reward_code": "FREE-5TH-434983",
+      "status": "REDEEMED",
+      "earned_at": "2026-10-09T12:46:29.207Z",
+      "expires_at": "2026-11-08T12:46:29.207Z",
+      "qualifying_order_count": 4,
+      "redeemed_at": "2026-10-09T12:46:29.212Z",
+      "redeemed_booking_id": "test-bk-free-1"
+    },
+    {
+      "id": "rew-1791550091171-458",
+      "user_id": "test-user-1791550091137",
+      "reward_code": "FREE-5TH-638730",
+      "status": "REDEEMED",
+      "earned_at": "2026-10-09T12:48:11.171Z",
+      "expires_at": "2026-11-08T12:48:11.171Z",
+      "qualifying_order_count": 4,
+      "redeemed_at": "2026-10-09T12:48:11.176Z",
+      "redeemed_booking_id": "test-bk-free-1"
+    },
+    {
+      "id": "rew-1791552331857-133",
+      "user_id": "test-user-1791552331808",
+      "reward_code": "FREE-5TH-285141",
+      "status": "REDEEMED",
+      "earned_at": "2026-10-09T13:25:31.857Z",
+      "expires_at": "2026-11-08T13:25:31.857Z",
+      "qualifying_order_count": 4,
+      "redeemed_at": "2026-10-09T13:25:31.864Z",
+      "redeemed_booking_id": "test-bk-free-1"
+    }
+  ],
+  "reward_redemptions": [
+    {
+      "id": "red-1791549072167-699",
+      "reward_id": "rew-1791549072163-157",
+      "user_id": "test-user-1791549072140",
+      "booking_id": "test-bk-free-1",
+      "booking_reference": "ION-FREE-1",
+      "discount_amount": 50,
+      "redeemed_at": "2026-10-09T12:31:12.167Z"
+    },
+    {
+      "id": "red-1791549681800-282",
+      "reward_id": "rew-1791549681797-750",
+      "user_id": "test-user-1791549681777",
+      "booking_id": "test-bk-free-1",
+      "booking_reference": "ION-FREE-1",
+      "discount_amount": 50,
+      "redeemed_at": "2026-10-09T12:41:21.800Z"
+    },
+    {
+      "id": "red-1791549968593-825",
+      "reward_id": "rew-1791549968588-198",
+      "user_id": "test-user-1791549968553",
+      "booking_id": "test-bk-free-1",
+      "booking_reference": "ION-FREE-1",
+      "discount_amount": 50,
+      "redeemed_at": "2026-10-09T12:46:08.593Z"
+    },
+    {
+      "id": "red-1791549989212-318",
+      "reward_id": "rew-1791549989208-817",
+      "user_id": "test-user-1791549989170",
+      "booking_id": "test-bk-free-1",
+      "booking_reference": "ION-FREE-1",
+      "discount_amount": 50,
+      "redeemed_at": "2026-10-09T12:46:29.212Z"
+    },
+    {
+      "id": "red-1791550091176-11",
+      "reward_id": "rew-1791550091171-458",
+      "user_id": "test-user-1791550091137",
+      "booking_id": "test-bk-free-1",
+      "booking_reference": "ION-FREE-1",
+      "discount_amount": 50,
+      "redeemed_at": "2026-10-09T12:48:11.176Z"
+    },
+    {
+      "id": "red-1791552331864-442",
+      "reward_id": "rew-1791552331857-133",
+      "user_id": "test-user-1791552331808",
+      "booking_id": "test-bk-free-1",
+      "booking_reference": "ION-FREE-1",
+      "discount_amount": 50,
+      "redeemed_at": "2026-10-09T13:25:31.864Z"
+    }
+  ],
+  "audit_logs": [
+    {
+      "id": "log-init-1",
+      "user_id": "p0000000-0000-0000-0000-000000000001",
+      "action": "SYSTEM_INITIALIZED",
+      "entity_type": "system",
+      "entity_id": "ionhub",
+      "details": {
+        "initialized": true
+      },
+      "created_at": "2026-10-09T17:30:00.000Z"
+    },
+    {
+      "user_id": "test-user-1791549072140",
+      "action": "BOOKING_CREATED",
+      "entity_type": "booking",
+      "entity_id": "bk-1791549072142-423",
+      "details": {
+        "booking_reference": "TEST-ORD-1",
+        "pricing_type": "PAY_PER_ORDER",
+        "pairs_count": 2,
+        "final_payable_amount": 50
+      },
+      "id": "log-1791549072144-1",
+      "created_at": "2026-10-09T12:31:12.144Z"
+    },
+    {
+      "user_id": "test-user-1791549072140",
+      "action": "BOOKING_CREATED",
+      "entity_type": "booking",
+      "entity_id": "bk-1791549072146-749",
+      "details": {
+        "booking_reference": "TEST-ORD-2",
+        "pricing_type": "PAY_PER_ORDER",
+        "pairs_count": 2,
+        "final_payable_amount": 50
+      },
+      "id": "log-1791549072148-191",
+      "created_at": "2026-10-09T12:31:12.148Z"
+    },
+    {
+      "user_id": "test-user-1791549072140",
+      "action": "BOOKING_CREATED",
+      "entity_type": "booking",
+      "entity_id": "bk-1791549072149-640",
+      "details": {
+        "booking_reference": "TEST-ORD-3",
+        "pricing_type": "PAY_PER_ORDER",
+        "pairs_count": 2,
+        "final_payable_amount": 50
+      },
+      "id": "log-1791549072151-862",
+      "created_at": "2026-10-09T12:31:12.151Z"
+    },
+    {
+      "user_id": "test-user-1791549072140",
+      "action": "BOOKING_CREATED",
+      "entity_type": "booking",
+      "entity_id": "bk-1791549072153-781",
+      "details": {
+        "booking_reference": "TEST-CANCELLED",
+        "pricing_type": "PAY_PER_ORDER",
+        "pairs_count": 2,
+        "final_payable_amount": 50
+      },
+      "id": "log-1791549072154-983",
+      "created_at": "2026-10-09T12:31:12.154Z"
+    },
+    {
+      "user_id": "test-user-1791549072140",
+      "action": "BOOKING_CREATED",
+      "entity_type": "booking",
+      "entity_id": "bk-1791549072155-515",
+      "details": {
+        "booking_reference": "TEST-UNPAID",
+        "pricing_type": "PAY_PER_ORDER",
+        "pairs_count": 2,
+        "final_payable_amount": 50
+      },
+      "id": "log-1791549072156-180",
+      "created_at": "2026-10-09T12:31:12.156Z"
+    },
+    {
+      "user_id": "test-user-1791549072140",
+      "action": "BOOKING_CREATED",
+      "entity_type": "booking",
+      "entity_id": "bk-1791549072158-948",
+      "details": {
+        "booking_reference": "TEST-ORD-4",
+        "pricing_type": "PAY_PER_ORDER",
+        "pairs_count": 1,
+        "final_payable_amount": 25
+      },
+      "id": "log-1791549072160-700",
+      "created_at": "2026-10-09T12:31:12.160Z"
+    },
+    {
+      "user_id": "test-user-1791549072140",
+      "action": "LOYALTY_REWARD_EARNED",
+      "entity_type": "reward",
+      "entity_id": "rew-1791549072163-157",
+      "details": {
+        "code": "FREE-5TH-184242",
+        "eligibleOrdersCount": 4
+      },
+      "id": "log-1791549072164-522",
+      "created_at": "2026-10-09T12:31:12.164Z"
+    },
+    {
+      "user_id": "test-user-1791549072140",
+      "action": "LOYALTY_REWARD_REDEEMED",
+      "entity_type": "reward",
+      "entity_id": "rew-1791549072163-157",
+      "details": {
+        "bookingReference": "ION-FREE-1",
+        "discountAmount": 50
+      },
+      "id": "log-1791549072169-588",
+      "created_at": "2026-10-09T12:31:12.169Z"
+    },
+    {
+      "user_id": "sub-user-1791549072171",
+      "action": "SUBSCRIPTION_ACTIVATED",
+      "entity_type": "subscription",
+      "entity_id": "sub-1791549072171-897",
+      "details": {
+        "plan_name": "Starter",
+        "monthly_price": 199,
+        "included_garments": 20
+      },
+      "id": "log-1791549072172-442",
+      "created_at": "2026-10-09T12:31:12.172Z"
+    },
+    {
+      "user_id": "sub-user-1791549072171",
+      "action": "BOOKING_CREATED",
+      "entity_type": "booking",
+      "entity_id": "bk-1791549072177-328",
+      "details": {
+        "booking_reference": "ION-SUB-WORKER-TEST",
+        "pricing_type": "SUBSCRIPTION",
+        "pairs_count": 5,
+        "final_payable_amount": 0
+      },
+      "id": "log-1791549072179-595",
+      "created_at": "2026-10-09T12:31:12.179Z"
+    },
+    {
+      "user_id": "test-user-1791549072140",
+      "action": "BOOKING_CREATED",
+      "entity_type": "booking",
+      "entity_id": "bk-1791549072181-567",
+      "details": {
+        "booking_reference": "ION-FREE-PAYOUT-TEST",
+        "pricing_type": "PAY_PER_ORDER",
+        "pairs_count": 3,
+        "final_payable_amount": 0
+      },
+      "id": "log-1791549072183-326",
+      "created_at": "2026-10-09T12:31:12.183Z"
+    },
+    {
+      "user_id": "test-user-1791549072140",
+      "action": "BOOKING_CREATED",
+      "entity_type": "booking",
+      "entity_id": "bk-1791549072185-434",
+      "details": {
+        "booking_reference": "ION-CARWASH-TEST"
+      },
+      "id": "log-1791549072186-30",
+      "created_at": "2026-10-09T12:31:12.186Z"
+    },
+    {
+      "user_id": "test-user-1791549681777",
+      "action": "BOOKING_CREATED",
+      "entity_type": "booking",
+      "entity_id": "bk-1791549681778-133",
+      "details": {
+        "booking_reference": "TEST-ORD-1",
+        "pricing_type": "PAY_PER_ORDER",
+        "pairs_count": 2,
+        "final_payable_amount": 50
+      },
+      "id": "log-1791549681780-169",
+      "created_at": "2026-10-09T12:41:21.780Z"
+    },
+    {
+      "user_id": "test-user-1791549681777",
+      "action": "BOOKING_CREATED",
+      "entity_type": "booking",
+      "entity_id": "bk-1791549681782-177",
+      "details": {
+        "booking_reference": "TEST-ORD-2",
+        "pricing_type": "PAY_PER_ORDER",
+        "pairs_count": 2,
+        "final_payable_amount": 50
+      },
+      "id": "log-1791549681783-210",
+      "created_at": "2026-10-09T12:41:21.783Z"
+    },
+    {
+      "user_id": "test-user-1791549681777",
+      "action": "BOOKING_CREATED",
+      "entity_type": "booking",
+      "entity_id": "bk-1791549681785-698",
+      "details": {
+        "booking_reference": "TEST-ORD-3",
+        "pricing_type": "PAY_PER_ORDER",
+        "pairs_count": 2,
+        "final_payable_amount": 50
+      },
+      "id": "log-1791549681786-6",
+      "created_at": "2026-10-09T12:41:21.786Z"
+    },
+    {
+      "user_id": "test-user-1791549681777",
+      "action": "BOOKING_CREATED",
+      "entity_type": "booking",
+      "entity_id": "bk-1791549681787-954",
+      "details": {
+        "booking_reference": "TEST-CANCELLED",
+        "pricing_type": "PAY_PER_ORDER",
+        "pairs_count": 2,
+        "final_payable_amount": 50
+      },
+      "id": "log-1791549681788-261",
+      "created_at": "2026-10-09T12:41:21.788Z"
+    },
+    {
+      "user_id": "test-user-1791549681777",
+      "action": "BOOKING_CREATED",
+      "entity_type": "booking",
+      "entity_id": "bk-1791549681789-163",
+      "details": {
+        "booking_reference": "TEST-UNPAID",
+        "pricing_type": "PAY_PER_ORDER",
+        "pairs_count": 2,
+        "final_payable_amount": 50
+      },
+      "id": "log-1791549681791-74",
+      "created_at": "2026-10-09T12:41:21.791Z"
+    },
+    {
+      "user_id": "test-user-1791549681777",
+      "action": "BOOKING_CREATED",
+      "entity_type": "booking",
+      "entity_id": "bk-1791549681793-725",
+      "details": {
+        "booking_reference": "TEST-ORD-4",
+        "pricing_type": "PAY_PER_ORDER",
+        "pairs_count": 1,
+        "final_payable_amount": 25
+      },
+      "id": "log-1791549681795-972",
+      "created_at": "2026-10-09T12:41:21.795Z"
+    },
+    {
+      "user_id": "test-user-1791549681777",
+      "action": "LOYALTY_REWARD_EARNED",
+      "entity_type": "reward",
+      "entity_id": "rew-1791549681797-750",
+      "details": {
+        "code": "FREE-5TH-926751",
+        "eligibleOrdersCount": 4
+      },
+      "id": "log-1791549681798-61",
+      "created_at": "2026-10-09T12:41:21.798Z"
+    },
+    {
+      "user_id": "test-user-1791549681777",
+      "action": "LOYALTY_REWARD_REDEEMED",
+      "entity_type": "reward",
+      "entity_id": "rew-1791549681797-750",
+      "details": {
+        "bookingReference": "ION-FREE-1",
+        "discountAmount": 50
+      },
+      "id": "log-1791549681801-270",
+      "created_at": "2026-10-09T12:41:21.801Z"
+    },
+    {
+      "user_id": "sub-user-1791549681804",
+      "action": "SUBSCRIPTION_ACTIVATED",
+      "entity_type": "subscription",
+      "entity_id": "sub-1791549681804-126",
+      "details": {
+        "plan_name": "Starter",
+        "monthly_price": 199,
+        "included_garments": 20
+      },
+      "id": "log-1791549681806-236",
+      "created_at": "2026-10-09T12:41:21.806Z"
+    },
+    {
+      "user_id": "sub-user-1791549681804",
+      "action": "BOOKING_CREATED",
+      "entity_type": "booking",
+      "entity_id": "bk-1791549681811-565",
+      "details": {
+        "booking_reference": "ION-SUB-WORKER-TEST",
+        "pricing_type": "SUBSCRIPTION",
+        "pairs_count": 5,
+        "final_payable_amount": 0
+      },
+      "id": "log-1791549681813-692",
+      "created_at": "2026-10-09T12:41:21.813Z"
+    },
+    {
+      "user_id": "test-user-1791549681777",
+      "action": "BOOKING_CREATED",
+      "entity_type": "booking",
+      "entity_id": "bk-1791549681815-193",
+      "details": {
+        "booking_reference": "ION-FREE-PAYOUT-TEST",
+        "pricing_type": "PAY_PER_ORDER",
+        "pairs_count": 3,
+        "final_payable_amount": 0
+      },
+      "id": "log-1791549681817-866",
+      "created_at": "2026-10-09T12:41:21.817Z"
+    },
+    {
+      "user_id": "test-user-1791549681777",
+      "action": "BOOKING_CREATED",
+      "entity_type": "booking",
+      "entity_id": "bk-1791549681820-579",
+      "details": {
+        "booking_reference": "ION-CARWASH-TEST"
+      },
+      "id": "log-1791549681821-377",
+      "created_at": "2026-10-09T12:41:21.821Z"
+    },
+    {
+      "user_id": "test-user-1791549968553",
+      "action": "BOOKING_CREATED",
+      "entity_type": "booking",
+      "entity_id": "bk-1791549968557-942",
+      "details": {
+        "booking_reference": "TEST-ORD-1",
+        "pricing_type": "PAY_PER_ORDER",
+        "pairs_count": 2,
+        "final_payable_amount": 50
+      },
+      "id": "log-1791549968563-673",
+      "created_at": "2026-10-09T12:46:08.563Z"
+    },
+    {
+      "user_id": "test-user-1791549968553",
+      "action": "BOOKING_CREATED",
+      "entity_type": "booking",
+      "entity_id": "bk-1791549968565-525",
+      "details": {
+        "booking_reference": "TEST-ORD-2",
+        "pricing_type": "PAY_PER_ORDER",
+        "pairs_count": 2,
+        "final_payable_amount": 50
+      },
+      "id": "log-1791549968566-703",
+      "created_at": "2026-10-09T12:46:08.566Z"
+    },
+    {
+      "user_id": "test-user-1791549968553",
+      "action": "BOOKING_CREATED",
+      "entity_type": "booking",
+      "entity_id": "bk-1791549968568-964",
+      "details": {
+        "booking_reference": "TEST-ORD-3",
+        "pricing_type": "PAY_PER_ORDER",
+        "pairs_count": 2,
+        "final_payable_amount": 50
+      },
+      "id": "log-1791549968571-745",
+      "created_at": "2026-10-09T12:46:08.571Z"
+    },
+    {
+      "user_id": "test-user-1791549968553",
+      "action": "BOOKING_CREATED",
+      "entity_type": "booking",
+      "entity_id": "bk-1791549968573-289",
+      "details": {
+        "booking_reference": "TEST-CANCELLED",
+        "pricing_type": "PAY_PER_ORDER",
+        "pairs_count": 2,
+        "final_payable_amount": 50
+      },
+      "id": "log-1791549968574-982",
+      "created_at": "2026-10-09T12:46:08.574Z"
+    },
+    {
+      "user_id": "test-user-1791549968553",
+      "action": "BOOKING_CREATED",
+      "entity_type": "booking",
+      "entity_id": "bk-1791549968576-861",
+      "details": {
+        "booking_reference": "TEST-UNPAID",
+        "pricing_type": "PAY_PER_ORDER",
+        "pairs_count": 2,
+        "final_payable_amount": 50
+      },
+      "id": "log-1791549968578-620",
+      "created_at": "2026-10-09T12:46:08.578Z"
+    },
+    {
+      "user_id": "test-user-1791549968553",
+      "action": "BOOKING_CREATED",
+      "entity_type": "booking",
+      "entity_id": "bk-1791549968581-969",
+      "details": {
+        "booking_reference": "TEST-ORD-4",
+        "pricing_type": "PAY_PER_ORDER",
+        "pairs_count": 1,
+        "final_payable_amount": 25
+      },
+      "id": "log-1791549968583-583",
+      "created_at": "2026-10-09T12:46:08.583Z"
+    },
+    {
+      "user_id": "test-user-1791549968553",
+      "action": "LOYALTY_REWARD_EARNED",
+      "entity_type": "reward",
+      "entity_id": "rew-1791549968588-198",
+      "details": {
+        "code": "FREE-5TH-714877",
+        "eligibleOrdersCount": 4
+      },
+      "id": "log-1791549968590-522",
+      "created_at": "2026-10-09T12:46:08.590Z"
+    },
+    {
+      "user_id": "test-user-1791549968553",
+      "action": "LOYALTY_REWARD_REDEEMED",
+      "entity_type": "reward",
+      "entity_id": "rew-1791549968588-198",
+      "details": {
+        "bookingReference": "ION-FREE-1",
+        "discountAmount": 50
+      },
+      "id": "log-1791549968595-932",
+      "created_at": "2026-10-09T12:46:08.595Z"
+    },
+    {
+      "user_id": "sub-user-1791549968597",
+      "action": "SUBSCRIPTION_ACTIVATED",
+      "entity_type": "subscription",
+      "entity_id": "sub-1791549968598-602",
+      "details": {
+        "plan_name": "Starter",
+        "monthly_price": 199,
+        "included_garments": 20
+      },
+      "id": "log-1791549968600-722",
+      "created_at": "2026-10-09T12:46:08.600Z"
+    },
+    {
+      "user_id": "sub-user-1791549968597",
+      "action": "BOOKING_CREATED",
+      "entity_type": "booking",
+      "entity_id": "bk-1791549968608-713",
+      "details": {
+        "booking_reference": "ION-SUB-WORKER-TEST",
+        "pricing_type": "SUBSCRIPTION",
+        "pairs_count": 5,
+        "final_payable_amount": 0
+      },
+      "id": "log-1791549968610-869",
+      "created_at": "2026-10-09T12:46:08.610Z"
+    },
+    {
+      "user_id": "test-user-1791549968553",
+      "action": "BOOKING_CREATED",
+      "entity_type": "booking",
+      "entity_id": "bk-1791549968614-270",
+      "details": {
+        "booking_reference": "ION-FREE-PAYOUT-TEST",
+        "pricing_type": "PAY_PER_ORDER",
+        "pairs_count": 3,
+        "final_payable_amount": 0
+      },
+      "id": "log-1791549968616-717",
+      "created_at": "2026-10-09T12:46:08.616Z"
+    },
+    {
+      "user_id": "test-user-1791549968553",
+      "action": "BOOKING_CREATED",
+      "entity_type": "booking",
+      "entity_id": "bk-1791549968619-172",
+      "details": {
+        "booking_reference": "ION-CARWASH-TEST"
+      },
+      "id": "log-1791549968622-398",
+      "created_at": "2026-10-09T12:46:08.622Z"
+    },
+    {
+      "user_id": "test-user-1791549989170",
+      "action": "BOOKING_CREATED",
+      "entity_type": "booking",
+      "entity_id": "bk-1791549989172-641",
+      "details": {
+        "booking_reference": "TEST-ORD-1",
+        "pricing_type": "PAY_PER_ORDER",
+        "pairs_count": 2,
+        "final_payable_amount": 50
+      },
+      "id": "log-1791549989176-236",
+      "created_at": "2026-10-09T12:46:29.176Z"
+    },
+    {
+      "user_id": "test-user-1791549989170",
+      "action": "BOOKING_CREATED",
+      "entity_type": "booking",
+      "entity_id": "bk-1791549989179-368",
+      "details": {
+        "booking_reference": "TEST-ORD-2",
+        "pricing_type": "PAY_PER_ORDER",
+        "pairs_count": 2,
+        "final_payable_amount": 50
+      },
+      "id": "log-1791549989182-490",
+      "created_at": "2026-10-09T12:46:29.182Z"
+    },
+    {
+      "user_id": "test-user-1791549989170",
+      "action": "BOOKING_CREATED",
+      "entity_type": "booking",
+      "entity_id": "bk-1791549989186-585",
+      "details": {
+        "booking_reference": "TEST-ORD-3",
+        "pricing_type": "PAY_PER_ORDER",
+        "pairs_count": 2,
+        "final_payable_amount": 50
+      },
+      "id": "log-1791549989189-701",
+      "created_at": "2026-10-09T12:46:29.189Z"
+    },
+    {
+      "user_id": "test-user-1791549989170",
+      "action": "BOOKING_CREATED",
+      "entity_type": "booking",
+      "entity_id": "bk-1791549989192-953",
+      "details": {
+        "booking_reference": "TEST-CANCELLED",
+        "pricing_type": "PAY_PER_ORDER",
+        "pairs_count": 2,
+        "final_payable_amount": 50
+      },
+      "id": "log-1791549989194-567",
+      "created_at": "2026-10-09T12:46:29.194Z"
+    },
+    {
+      "user_id": "test-user-1791549989170",
+      "action": "BOOKING_CREATED",
+      "entity_type": "booking",
+      "entity_id": "bk-1791549989195-126",
+      "details": {
+        "booking_reference": "TEST-UNPAID",
+        "pricing_type": "PAY_PER_ORDER",
+        "pairs_count": 2,
+        "final_payable_amount": 50
+      },
+      "id": "log-1791549989197-525",
+      "created_at": "2026-10-09T12:46:29.197Z"
+    },
+    {
+      "user_id": "test-user-1791549989170",
+      "action": "BOOKING_CREATED",
+      "entity_type": "booking",
+      "entity_id": "bk-1791549989201-934",
+      "details": {
+        "booking_reference": "TEST-ORD-4",
+        "pricing_type": "PAY_PER_ORDER",
+        "pairs_count": 1,
+        "final_payable_amount": 25
+      },
+      "id": "log-1791549989205-776",
+      "created_at": "2026-10-09T12:46:29.205Z"
+    },
+    {
+      "user_id": "test-user-1791549989170",
+      "action": "LOYALTY_REWARD_EARNED",
+      "entity_type": "reward",
+      "entity_id": "rew-1791549989208-817",
+      "details": {
+        "code": "FREE-5TH-434983",
+        "eligibleOrdersCount": 4
+      },
+      "id": "log-1791549989209-213",
+      "created_at": "2026-10-09T12:46:29.209Z"
+    },
+    {
+      "user_id": "test-user-1791549989170",
+      "action": "LOYALTY_REWARD_REDEEMED",
+      "entity_type": "reward",
+      "entity_id": "rew-1791549989208-817",
+      "details": {
+        "bookingReference": "ION-FREE-1",
+        "discountAmount": 50
+      },
+      "id": "log-1791549989213-951",
+      "created_at": "2026-10-09T12:46:29.213Z"
+    },
+    {
+      "user_id": "sub-user-1791549989216",
+      "action": "SUBSCRIPTION_ACTIVATED",
+      "entity_type": "subscription",
+      "entity_id": "sub-1791549989217-324",
+      "details": {
+        "plan_name": "Starter",
+        "monthly_price": 199,
+        "included_garments": 20
+      },
+      "id": "log-1791549989221-788",
+      "created_at": "2026-10-09T12:46:29.221Z"
+    },
+    {
+      "user_id": "sub-user-1791549989216",
+      "action": "BOOKING_CREATED",
+      "entity_type": "booking",
+      "entity_id": "bk-1791549989226-47",
+      "details": {
+        "booking_reference": "ION-SUB-WORKER-TEST",
+        "pricing_type": "SUBSCRIPTION",
+        "pairs_count": 5,
+        "final_payable_amount": 0
+      },
+      "id": "log-1791549989228-587",
+      "created_at": "2026-10-09T12:46:29.228Z"
+    },
+    {
+      "user_id": "test-user-1791549989170",
+      "action": "BOOKING_CREATED",
+      "entity_type": "booking",
+      "entity_id": "bk-1791549989231-933",
+      "details": {
+        "booking_reference": "ION-FREE-PAYOUT-TEST",
+        "pricing_type": "PAY_PER_ORDER",
+        "pairs_count": 3,
+        "final_payable_amount": 0
+      },
+      "id": "log-1791549989234-537",
+      "created_at": "2026-10-09T12:46:29.234Z"
+    },
+    {
+      "user_id": "test-user-1791549989170",
+      "action": "BOOKING_CREATED",
+      "entity_type": "booking",
+      "entity_id": "bk-1791549989238-346",
+      "details": {
+        "booking_reference": "ION-CARWASH-TEST"
+      },
+      "id": "log-1791549989240-45",
+      "created_at": "2026-10-09T12:46:29.240Z"
+    },
+    {
+      "user_id": "test-user-1791550091137",
+      "action": "BOOKING_CREATED",
+      "entity_type": "booking",
+      "entity_id": "bk-1791550091139-196",
+      "details": {
+        "booking_reference": "TEST-ORD-1",
+        "pricing_type": "PAY_PER_ORDER",
+        "pairs_count": 2,
+        "final_payable_amount": 50
+      },
+      "id": "log-1791550091141-318",
+      "created_at": "2026-10-09T12:48:11.141Z"
+    },
+    {
+      "user_id": "test-user-1791550091137",
+      "action": "BOOKING_CREATED",
+      "entity_type": "booking",
+      "entity_id": "bk-1791550091143-769",
+      "details": {
+        "booking_reference": "TEST-ORD-2",
+        "pricing_type": "PAY_PER_ORDER",
+        "pairs_count": 2,
+        "final_payable_amount": 50
+      },
+      "id": "log-1791550091145-565",
+      "created_at": "2026-10-09T12:48:11.145Z"
+    },
+    {
+      "user_id": "test-user-1791550091137",
+      "action": "BOOKING_CREATED",
+      "entity_type": "booking",
+      "entity_id": "bk-1791550091149-619",
+      "details": {
+        "booking_reference": "TEST-ORD-3",
+        "pricing_type": "PAY_PER_ORDER",
+        "pairs_count": 2,
+        "final_payable_amount": 50
+      },
+      "id": "log-1791550091151-844",
+      "created_at": "2026-10-09T12:48:11.151Z"
+    },
+    {
+      "user_id": "test-user-1791550091137",
+      "action": "BOOKING_CREATED",
+      "entity_type": "booking",
+      "entity_id": "bk-1791550091154-171",
+      "details": {
+        "booking_reference": "TEST-CANCELLED",
+        "pricing_type": "PAY_PER_ORDER",
+        "pairs_count": 2,
+        "final_payable_amount": 50
+      },
+      "id": "log-1791550091157-283",
+      "created_at": "2026-10-09T12:48:11.157Z"
+    },
+    {
+      "user_id": "test-user-1791550091137",
+      "action": "BOOKING_CREATED",
+      "entity_type": "booking",
+      "entity_id": "bk-1791550091159-958",
+      "details": {
+        "booking_reference": "TEST-UNPAID",
+        "pricing_type": "PAY_PER_ORDER",
+        "pairs_count": 2,
+        "final_payable_amount": 50
+      },
+      "id": "log-1791550091160-388",
+      "created_at": "2026-10-09T12:48:11.160Z"
+    },
+    {
+      "user_id": "test-user-1791550091137",
+      "action": "BOOKING_CREATED",
+      "entity_type": "booking",
+      "entity_id": "bk-1791550091166-383",
+      "details": {
+        "booking_reference": "TEST-ORD-4",
+        "pricing_type": "PAY_PER_ORDER",
+        "pairs_count": 1,
+        "final_payable_amount": 25
+      },
+      "id": "log-1791550091168-219",
+      "created_at": "2026-10-09T12:48:11.168Z"
+    },
+    {
+      "user_id": "test-user-1791550091137",
+      "action": "LOYALTY_REWARD_EARNED",
+      "entity_type": "reward",
+      "entity_id": "rew-1791550091171-458",
+      "details": {
+        "code": "FREE-5TH-638730",
+        "eligibleOrdersCount": 4
+      },
+      "id": "log-1791550091173-457",
+      "created_at": "2026-10-09T12:48:11.173Z"
+    },
+    {
+      "user_id": "test-user-1791550091137",
+      "action": "LOYALTY_REWARD_REDEEMED",
+      "entity_type": "reward",
+      "entity_id": "rew-1791550091171-458",
+      "details": {
+        "bookingReference": "ION-FREE-1",
+        "discountAmount": 50
+      },
+      "id": "log-1791550091178-233",
+      "created_at": "2026-10-09T12:48:11.178Z"
+    },
+    {
+      "user_id": "sub-user-1791550091183",
+      "action": "SUBSCRIPTION_ACTIVATED",
+      "entity_type": "subscription",
+      "entity_id": "sub-1791550091184-657",
+      "details": {
+        "plan_name": "Starter",
+        "monthly_price": 199,
+        "included_garments": 20
+      },
+      "id": "log-1791550091186-952",
+      "created_at": "2026-10-09T12:48:11.186Z"
+    },
+    {
+      "user_id": "sub-user-1791550091183",
+      "action": "BOOKING_CREATED",
+      "entity_type": "booking",
+      "entity_id": "bk-1791550091191-897",
+      "details": {
+        "booking_reference": "ION-SUB-WORKER-TEST",
+        "pricing_type": "SUBSCRIPTION",
+        "pairs_count": 5,
+        "final_payable_amount": 0
+      },
+      "id": "log-1791550091195-617",
+      "created_at": "2026-10-09T12:48:11.195Z"
+    },
+    {
+      "user_id": "test-user-1791550091137",
+      "action": "BOOKING_CREATED",
+      "entity_type": "booking",
+      "entity_id": "bk-1791550091204-736",
+      "details": {
+        "booking_reference": "ION-FREE-PAYOUT-TEST",
+        "pricing_type": "PAY_PER_ORDER",
+        "pairs_count": 3,
+        "final_payable_amount": 0
+      },
+      "id": "log-1791550091207-520",
+      "created_at": "2026-10-09T12:48:11.207Z"
+    },
+    {
+      "user_id": "test-user-1791550091137",
+      "action": "BOOKING_CREATED",
+      "entity_type": "booking",
+      "entity_id": "bk-1791550091209-364",
+      "details": {
+        "booking_reference": "ION-CARWASH-TEST"
+      },
+      "id": "log-1791550091217-852",
+      "created_at": "2026-10-09T12:48:11.217Z"
+    },
+    {
+      "user_id": "test-user-1791549072140",
+      "action": "BOOKING_STATUS_CHANGED",
+      "entity_type": "booking",
+      "entity_id": "bk-1791549072185-434",
+      "details": {
+        "from": "PENDING",
+        "to": "CONFIRMED"
+      },
+      "id": "log-1791550716483-710",
+      "created_at": "2026-10-09T12:58:36.483Z"
+    },
+    {
+      "user_id": "p-1791550428125",
+      "action": "BOOKING_CREATED",
+      "entity_type": "booking",
+      "entity_id": "bk-1791551372072-139",
+      "details": {
+        "booking_reference": "ION-2026-420615",
+        "pricing_type": "PAY_PER_ORDER",
+        "pairs_count": null,
+        "final_payable_amount": null,
+        "reward_applied": null,
+        "subscription_applied": null
+      },
+      "id": "log-1791551372078-107",
+      "created_at": "2026-10-09T13:09:32.078Z"
+    },
+    {
+      "user_id": "test-user-1791549072140",
+      "action": "BOOKING_STATUS_CHANGED",
+      "entity_type": "booking",
+      "entity_id": "bk-1791549072185-434",
+      "details": {
+        "from": "CONFIRMED",
+        "to": "PICKED_UP"
+      },
+      "id": "log-1791551454478-23",
+      "created_at": "2026-10-09T13:10:54.478Z"
+    },
+    {
+      "user_id": "p-1791550428125",
+      "action": "BOOKING_STATUS_CHANGED",
+      "entity_type": "booking",
+      "entity_id": "bk-1791551372072-139",
+      "details": {
+        "from": "PENDING",
+        "to": "CONFIRMED"
+      },
+      "id": "log-1791551756098-851",
+      "created_at": "2026-10-09T13:15:56.099Z"
+    },
+    {
+      "user_id": "p-1791550428125",
+      "action": "BOOKING_STATUS_CHANGED",
+      "entity_type": "booking",
+      "entity_id": "bk-1791551372072-139",
+      "details": {
+        "from": "CONFIRMED",
+        "to": "PICKED_UP"
+      },
+      "id": "log-1791552022541-753",
+      "created_at": "2026-10-09T13:20:22.541Z"
+    },
+    {
+      "user_id": "test-user-1791552331808",
+      "action": "BOOKING_CREATED",
+      "entity_type": "booking",
+      "entity_id": "bk-1791552331815-435",
+      "details": {
+        "booking_reference": "TEST-ORD-1",
+        "pricing_type": "PAY_PER_ORDER",
+        "pairs_count": 2,
+        "final_payable_amount": 50
+      },
+      "id": "log-1791552331820-986",
+      "created_at": "2026-10-09T13:25:31.820Z"
+    },
+    {
+      "user_id": "test-user-1791552331808",
+      "action": "BOOKING_CREATED",
+      "entity_type": "booking",
+      "entity_id": "bk-1791552331823-959",
+      "details": {
+        "booking_reference": "TEST-ORD-2",
+        "pricing_type": "PAY_PER_ORDER",
+        "pairs_count": 2,
+        "final_payable_amount": 50
+      },
+      "id": "log-1791552331826-69",
+      "created_at": "2026-10-09T13:25:31.826Z"
+    },
+    {
+      "user_id": "test-user-1791552331808",
+      "action": "BOOKING_CREATED",
+      "entity_type": "booking",
+      "entity_id": "bk-1791552331831-675",
+      "details": {
+        "booking_reference": "TEST-ORD-3",
+        "pricing_type": "PAY_PER_ORDER",
+        "pairs_count": 2,
+        "final_payable_amount": 50
+      },
+      "id": "log-1791552331834-264",
+      "created_at": "2026-10-09T13:25:31.834Z"
+    },
+    {
+      "user_id": "test-user-1791552331808",
+      "action": "BOOKING_CREATED",
+      "entity_type": "booking",
+      "entity_id": "bk-1791552331837-994",
+      "details": {
+        "booking_reference": "TEST-CANCELLED",
+        "pricing_type": "PAY_PER_ORDER",
+        "pairs_count": 2,
+        "final_payable_amount": 50
+      },
+      "id": "log-1791552331839-607",
+      "created_at": "2026-10-09T13:25:31.839Z"
+    },
+    {
+      "user_id": "test-user-1791552331808",
+      "action": "BOOKING_CREATED",
+      "entity_type": "booking",
+      "entity_id": "bk-1791552331843-912",
+      "details": {
+        "booking_reference": "TEST-UNPAID",
+        "pricing_type": "PAY_PER_ORDER",
+        "pairs_count": 2,
+        "final_payable_amount": 50
+      },
+      "id": "log-1791552331847-149",
+      "created_at": "2026-10-09T13:25:31.847Z"
+    },
+    {
+      "user_id": "test-user-1791552331808",
+      "action": "BOOKING_CREATED",
+      "entity_type": "booking",
+      "entity_id": "bk-1791552331851-572",
+      "details": {
+        "booking_reference": "TEST-ORD-4",
+        "pricing_type": "PAY_PER_ORDER",
+        "pairs_count": 1,
+        "final_payable_amount": 25
+      },
+      "id": "log-1791552331853-889",
+      "created_at": "2026-10-09T13:25:31.853Z"
+    },
+    {
+      "user_id": "test-user-1791552331808",
+      "action": "LOYALTY_REWARD_EARNED",
+      "entity_type": "reward",
+      "entity_id": "rew-1791552331857-133",
+      "details": {
+        "code": "FREE-5TH-285141",
+        "eligibleOrdersCount": 4
+      },
+      "id": "log-1791552331859-68",
+      "created_at": "2026-10-09T13:25:31.859Z"
+    },
+    {
+      "user_id": "test-user-1791552331808",
+      "action": "LOYALTY_REWARD_REDEEMED",
+      "entity_type": "reward",
+      "entity_id": "rew-1791552331857-133",
+      "details": {
+        "bookingReference": "ION-FREE-1",
+        "discountAmount": 50
+      },
+      "id": "log-1791552331866-606",
+      "created_at": "2026-10-09T13:25:31.866Z"
+    },
+    {
+      "user_id": "sub-user-1791552331870",
+      "action": "SUBSCRIPTION_ACTIVATED",
+      "entity_type": "subscription",
+      "entity_id": "sub-1791552331873-40",
+      "details": {
+        "plan_name": "Starter",
+        "monthly_price": 199,
+        "included_garments": 20
+      },
+      "id": "log-1791552331875-58",
+      "created_at": "2026-10-09T13:25:31.875Z"
+    },
+    {
+      "user_id": "sub-user-1791552331870",
+      "action": "BOOKING_CREATED",
+      "entity_type": "booking",
+      "entity_id": "bk-1791552331885-177",
+      "details": {
+        "booking_reference": "ION-SUB-WORKER-TEST",
+        "pricing_type": "SUBSCRIPTION",
+        "pairs_count": 5,
+        "final_payable_amount": 0
+      },
+      "id": "log-1791552331890-233",
+      "created_at": "2026-10-09T13:25:31.890Z"
+    },
+    {
+      "user_id": "test-user-1791552331808",
+      "action": "BOOKING_CREATED",
+      "entity_type": "booking",
+      "entity_id": "bk-1791552331896-660",
+      "details": {
+        "booking_reference": "ION-FREE-PAYOUT-TEST",
+        "pricing_type": "PAY_PER_ORDER",
+        "pairs_count": 3,
+        "final_payable_amount": 0
+      },
+      "id": "log-1791552331900-10",
+      "created_at": "2026-10-09T13:25:31.900Z"
+    },
+    {
+      "user_id": "test-user-1791552331808",
+      "action": "BOOKING_CREATED",
+      "entity_type": "booking",
+      "entity_id": "bk-1791552331903-401",
+      "details": {
+        "booking_reference": "ION-CARWASH-TEST"
+      },
+      "id": "log-1791552331906-479",
+      "created_at": "2026-10-09T13:25:31.906Z"
+    },
+    {
+      "user_id": "test-user-1791552331808",
+      "action": "BOOKING_STATUS_CHANGED",
+      "entity_type": "booking",
+      "entity_id": "bk-1791552331903-401",
+      "details": {
+        "from": "PENDING",
+        "to": "CONFIRMED"
+      },
+      "id": "log-1791553809887-320",
+      "created_at": "2026-10-09T13:50:09.887Z"
+    },
+    {
+      "user_id": "test-user-1791552331808",
+      "action": "BOOKING_STATUS_CHANGED",
+      "entity_type": "booking",
+      "entity_id": "bk-1791552331903-401",
+      "details": {
+        "from": "CONFIRMED",
+        "to": "PICKED_UP"
+      },
+      "id": "log-1791553816718-457",
+      "created_at": "2026-10-09T13:50:16.718Z"
+    },
+    {
+      "user_id": "test-user-1791552331808",
+      "action": "BOOKING_STATUS_CHANGED",
+      "entity_type": "booking",
+      "entity_id": "bk-1791552331903-401",
+      "details": {
+        "from": "PICKED_UP",
+        "to": "READY"
+      },
+      "id": "log-1791553822243-967",
+      "created_at": "2026-10-09T13:50:22.243Z"
+    },
+    {
+      "user_id": "test-user-1791552331808",
+      "action": "BOOKING_STATUS_CHANGED",
+      "entity_type": "booking",
+      "entity_id": "bk-1791552331903-401",
+      "details": {
+        "from": "READY",
+        "to": "PICKUP_SCHEDULED"
+      },
+      "id": "log-1791553823568-324",
+      "created_at": "2026-10-09T13:50:23.568Z"
+    },
+    {
+      "user_id": "test-user-1791552331808",
+      "action": "BOOKING_STATUS_CHANGED",
+      "entity_type": "booking",
+      "entity_id": "bk-1791552331903-401",
+      "details": {
+        "from": "PICKUP_SCHEDULED",
+        "to": "IN_SERVICE"
+      },
+      "id": "log-1791553825006-257",
+      "created_at": "2026-10-09T13:50:25.006Z"
+    },
+    {
+      "user_id": "test-user-1791552331808",
+      "action": "BOOKING_STATUS_CHANGED",
+      "entity_type": "booking",
+      "entity_id": "bk-1791552331903-401",
+      "details": {
+        "from": "IN_SERVICE",
+        "to": "OUT_FOR_DELIVERY"
+      },
+      "id": "log-1791553826455-826",
+      "created_at": "2026-10-09T13:50:26.455Z"
+    },
+    {
+      "user_id": "test-user-1791552331808",
+      "action": "BOOKING_STATUS_CHANGED",
+      "entity_type": "booking",
+      "entity_id": "bk-1791552331903-401",
+      "details": {
+        "from": "OUT_FOR_DELIVERY",
+        "to": "COMPLETED"
+      },
+      "id": "log-1791553838287-665",
+      "created_at": "2026-10-09T13:50:38.287Z"
+    }
+  ]
+}

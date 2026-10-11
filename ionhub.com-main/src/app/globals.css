@@ -1,0 +1,124 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --brand-dark: #0B4F47;
+    --brand-forest: #12312C;
+    --brand-mid: #176B5D;
+    --brand-leaf: #3E8E4A;
+    --brand-leaf-dark: #2E7D32;
+    --brand-mint: #EAF5E8;
+    --brand-cream: #F7F5E9;
+    --brand-cream-light: #FAF9F2;
+    --brand-surface: #FFFFFF;
+    --brand-text: #12312C;
+    --brand-text-muted: #5A7065;
+    --brand-border: #E0EBDD;
+  }
+
+  body {
+    background-color: var(--brand-cream-light);
+    color: var(--brand-text);
+    font-family: var(--font-outfit), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Custom Utilities for ION HUB design identity */
+.bg-cream {
+  background-color: #F7F5E9;
+}
+
+.bg-cream-soft {
+  background-color: #FAF9F2;
+}
+
+.bg-forest {
+  background-color: #12312C;
+}
+
+.bg-brand-deep {
+  background-color: #0B4F47;
+}
+
+.bg-brand-mid {
+  background-color: #176B5D;
+}
+
+.bg-brand-mint {
+  background-color: #EAF5E8;
+}
+
+.text-forest {
+  color: #12312C;
+}
+
+.text-brand-deep {
+  color: #0B4F47;
+}
+
+.text-brand-leaf {
+  color: #3E8E4A;
+}
+
+.border-brand-soft {
+  border-color: #E0EBDD;
+}
+
+/* Glassmorphism & Subtle Accents */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(234, 245, 232, 0.8);
+}
+
+.glass-panel-dark {
+  background: rgba(18, 49, 44, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(62, 142, 74, 0.2);
+}
+
+/* Subtle Organic Shadows */
+.shadow-soft {
+  box-shadow: 0 4px 20px -2px rgba(11, 79, 71, 0.06), 0 2px 6px -1px rgba(11, 79, 71, 0.04);
+}
+
+.shadow-card-hover {
+  box-shadow: 0 16px 32px -4px rgba(11, 79, 71, 0.12), 0 4px 12px -2px rgba(11, 79, 71, 0.06);
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-6px) rotate(3deg);
+  }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F7F5E9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #CBDAD0;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #176B5D;
+}
