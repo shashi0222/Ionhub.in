@@ -4,19 +4,15 @@ import Image from 'next/image';
 import { 
   MapPin, 
   Clock, 
-  Phone, 
-  Mail, 
   MessageCircle, 
   Car, 
   Shirt, 
   Sparkles, 
-  Leaf,
-  ShieldCheck 
+  Leaf
 } from 'lucide-react';
 
 export function Footer() {
   const whatsappUrl = 'https://chat.whatsapp.com/HvABib08cizBFFWgbA9JWa';
-  const phone = process.env.NEXT_PUBLIC_BUSINESS_PHONE || '+91 90000 00000';
   const email = process.env.NEXT_PUBLIC_BUSINESS_EMAIL || 'care@ionhub.in';
 
   return (

@@ -9,7 +9,8 @@ export const metadata = {
 };
 
 export default function ContactPage() {
-  const phone = process.env.NEXT_PUBLIC_BUSINESS_PHONE || '+91 90000 00000';
+  const phone1 = process.env.NEXT_PUBLIC_BUSINESS_PHONE || '7013204229';
+  const phone2 = process.env.NEXT_PUBLIC_BUSINESS_PHONE2 || '8523056022';
   const email = process.env.NEXT_PUBLIC_BUSINESS_EMAIL || 'care@ionhub.in';
   const whatsappUrl = 'https://chat.whatsapp.com/HvABib08cizBFFWgbA9JWa';
 
@@ -68,8 +69,11 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h4 className="font-bold text-[#12312C] text-xs uppercase tracking-wider">Phone Support</h4>
-                    <a href={`tel:${phone.replace(/\s+/g, '')}`} className="font-extrabold text-[#0B4F47] text-base mt-0.5 hover:underline block">
-                      {phone}
+                    <a href={`tel:${phone1.replace(/\s+/g, '')}`} className="font-extrabold text-[#0B4F47] text-base mt-0.5 hover:underline block">
+                      {phone1}
+                    </a>
+                    <a href={`tel:${phone2.replace(/\s+/g, '')}`} className="font-extrabold text-[#0B4F47] text-base hover:underline block">
+                      {phone2}
                     </a>
                     <span className="text-xs text-[#5A7065]">Available during service hours</span>
                   </div>
