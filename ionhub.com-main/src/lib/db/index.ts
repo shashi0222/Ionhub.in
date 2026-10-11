@@ -1,5 +1,5 @@
 import { localStore } from './local-store';
-import { createServerSupabaseClient } from '../supabase/server';
+import { createServerSupabaseClient, createAdminSupabaseClient } from '../supabase/server';
 import {
   UserProfile,
   Service,
@@ -26,6 +26,8 @@ function isSupabaseConfigured(): boolean {
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
   );
 }
+
+const UUID_REGEX = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
 export const db = {
   // Profiles
@@ -61,14 +63,29 @@ export const db = {
 
   async createProfile(profile: Omit<UserProfile, 'created_at' | 'updated_at'>): Promise<UserProfile> {
     if (isSupabaseConfigured()) {
-      const supabase = await createServerSupabaseClient();
+      const adminClient = createAdminSupabaseClient();
+      const userClient = await createServerSupabaseClient();
+      const supabase = adminClient || userClient;
       if (supabase) {
-        const { data, error } = await supabase
-          .from('profiles')
-          .insert([profile])
-          .select()
-          .single();
-        if (!error && data) return data as UserProfile;
+        try {
+          const isRealAuthId = profile.auth_user_id && UUID_REGEX.test(profile.auth_user_id);
+          const isRealId = profile.id && UUID_REGEX.test(profile.id);
+          const toInsert: Record<string, any> = {
+            ...profile,
+            auth_user_id: isRealAuthId ? profile.auth_user_id : null,
+          };
+          if (!isRealId) {
+            delete toInsert.id;
+          }
+          const { data, error } = await supabase
+            .from('profiles')
+            .insert([toInsert])
+            .select()
+            .single();
+          if (!error && data) return data as UserProfile;
+        } catch {
+          // Fall through to localStore
+        }
       }
     }
     return localStore.createProfile(profile);
@@ -195,14 +212,28 @@ export const db = {
 
   async createAddress(address: Omit<Address, 'id' | 'created_at' | 'updated_at'>): Promise<Address> {
     if (isSupabaseConfigured()) {
-      const supabase = await createServerSupabaseClient();
+      const adminClient = createAdminSupabaseClient();
+      const userClient = await createServerSupabaseClient();
+      const supabase = adminClient || userClient;
       if (supabase) {
-        const { data, error } = await supabase
-          .from('addresses')
-          .insert([address])
-          .select()
-          .single();
-        if (!error && data) return data as Address;
+        try {
+          const isRealId = (address as any).id && UUID_REGEX.test((address as any).id);
+          const isRealUserId = address.user_id && UUID_REGEX.test(address.user_id);
+          if (isRealUserId) {
+            const toInsert: Record<string, any> = { ...address };
+            if (!isRealId) {
+              delete toInsert.id;
+            }
+            const { data, error } = await supabase
+              .from('addresses')
+              .insert([toInsert])
+              .select()
+              .single();
+            if (!error && data) return data as Address;
+          }
+        } catch {
+          // Fall through to localStore
+        }
       }
     }
     return localStore.createAddress(address);
@@ -396,23 +427,37 @@ export const db = {
     items?: Array<{ name: string; quantity: number }>
   ): Promise<Booking | null> {
     if (isSupabaseConfigured()) {
-      const supabase = await createServerSupabaseClient();
+      const adminClient = createAdminSupabaseClient();
+      const userClient = await createServerSupabaseClient();
+      const supabase = adminClient || userClient;
       if (supabase) {
-        const { data: bData, error: bError } = await supabase
-          .from('bookings')
-          .insert([booking])
-          .select()
-          .single();
-        if (!bError && bData) {
-          if (items && items.length > 0) {
-            const bookingItems = items.map((i) => ({
-              booking_id: bData.id,
-              item_name: i.name,
-              quantity: i.quantity,
-            }));
-            await supabase.from('booking_items').insert(bookingItems);
+        try {
+          const isRealUserId = booking.user_id && UUID_REGEX.test(booking.user_id);
+          const isRealAddressId = booking.address_id && UUID_REGEX.test(booking.address_id);
+          const isRealServiceId = booking.service_id && UUID_REGEX.test(booking.service_id);
+
+          // Only attempt Supabase insert if referenced IDs are valid UUIDs
+          if (isRealUserId && isRealAddressId && isRealServiceId) {
+            const { data: bData, error: bError } = await supabase
+              .from('bookings')
+              .insert([booking])
+              .select()
+              .single();
+            if (!bError && bData) {
+              if (items && items.length > 0) {
+                const bookingItems = items.map((i) => ({
+                  booking_id: bData.id,
+                  item_name: i.name,
+                  quantity: i.quantity,
+                }));
+                await supabase.from('booking_items').insert(bookingItems);
+              }
+              const retrieved = await db.getBookingById(bData.id);
+              if (retrieved) return retrieved;
+            }
           }
-          return db.getBookingById(bData.id);
+        } catch {
+          // Fall through to localStore
         }
       }
     }

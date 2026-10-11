@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import os from 'os';
 import {
   UserProfile,
   ServiceCategory,
@@ -50,6 +51,9 @@ interface DatabaseSchema {
 
 const DATA_DIR = path.join(process.cwd(), 'data');
 const DB_FILE = path.join(DATA_DIR, 'ionhub_db.json');
+const TMP_DB_FILE = path.join(os.tmpdir(), 'ionhub_db.json');
+
+let memoryDb: DatabaseSchema | null = null;
 
 const DEFAULT_IRONING_CONFIG: IroningPricingConfig = {
   price_per_pair: 25,
@@ -537,43 +541,74 @@ const INITIAL_DATA: DatabaseSchema = {
 };
 
 function readDb(): DatabaseSchema {
+  if (memoryDb) {
+    return memoryDb;
+  }
+
   try {
-    if (!fs.existsSync(DB_FILE)) {
-      writeDb(INITIAL_DATA);
-      return INITIAL_DATA;
+    let raw: string | null = null;
+
+    // 1. Try reading from /tmp (persists across warm invocations in serverless)
+    if (fs.existsSync(TMP_DB_FILE)) {
+      try {
+        raw = fs.readFileSync(TMP_DB_FILE, 'utf-8');
+      } catch {
+        // Fall back to bundled data
+      }
     }
-    const raw = fs.readFileSync(DB_FILE, 'utf-8');
-    const parsed = JSON.parse(raw);
-    
-    // Ensure all new schema properties exist and fall back safely
-    return {
-      ...INITIAL_DATA,
-      ...parsed,
-      profiles: parsed.profiles || INITIAL_DATA.profiles,
-      bookings: parsed.bookings || INITIAL_DATA.bookings,
-      booking_items: parsed.booking_items || INITIAL_DATA.booking_items,
-      ironing_config: parsed.ironing_config ? { ...DEFAULT_IRONING_CONFIG, ...parsed.ironing_config } : DEFAULT_IRONING_CONFIG,
-      subscription_plans: (parsed.subscription_plans && parsed.subscription_plans.length > 0) ? parsed.subscription_plans : DEFAULT_SUBSCRIPTION_PLANS,
-      customer_subscriptions: parsed.customer_subscriptions || [],
-      subscription_usage_records: parsed.subscription_usage_records || [],
-      free_order_rewards: parsed.free_order_rewards || [],
-      reward_redemptions: parsed.reward_redemptions || [],
-      audit_logs: parsed.audit_logs || [],
-    };
+
+    // 2. Try reading from local data directory
+    if (!raw && fs.existsSync(DB_FILE)) {
+      raw = fs.readFileSync(DB_FILE, 'utf-8');
+    }
+
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      const loaded: DatabaseSchema = {
+        ...INITIAL_DATA,
+        ...parsed,
+        profiles: parsed.profiles || INITIAL_DATA.profiles,
+        bookings: parsed.bookings || INITIAL_DATA.bookings,
+        booking_items: parsed.booking_items || INITIAL_DATA.booking_items,
+        ironing_config: parsed.ironing_config ? { ...DEFAULT_IRONING_CONFIG, ...parsed.ironing_config } : DEFAULT_IRONING_CONFIG,
+        subscription_plans: (parsed.subscription_plans && parsed.subscription_plans.length > 0) ? parsed.subscription_plans : DEFAULT_SUBSCRIPTION_PLANS,
+        customer_subscriptions: parsed.customer_subscriptions || [],
+        subscription_usage_records: parsed.subscription_usage_records || [],
+        free_order_rewards: parsed.free_order_rewards || [],
+        reward_redemptions: parsed.reward_redemptions || [],
+        audit_logs: parsed.audit_logs || [],
+      };
+      memoryDb = loaded;
+      return loaded;
+    }
   } catch (err) {
     console.error('Error reading local DB:', err);
-    return INITIAL_DATA;
   }
+
+  const fallback: DatabaseSchema = { ...INITIAL_DATA };
+  memoryDb = fallback;
+  return fallback;
 }
 
 function writeDb(data: DatabaseSchema): void {
+  // Always update in-memory state
+  memoryDb = data;
+
+  // 1. Try writing to bundled project directory (local development)
   try {
     if (!fs.existsSync(DATA_DIR)) {
       fs.mkdirSync(DATA_DIR, { recursive: true });
     }
     fs.writeFileSync(DB_FILE, JSON.stringify(data, null, 2), 'utf-8');
-  } catch (err) {
-    console.error('Error writing local DB:', err);
+  } catch {
+    // Expected on read-only serverless filesystems (e.g., Vercel /var/task)
+  }
+
+  // 2. Write to temporary directory (/tmp is writable in serverless environments)
+  try {
+    fs.writeFileSync(TMP_DB_FILE, JSON.stringify(data, null, 2), 'utf-8');
+  } catch {
+    // In-memory state remains preserved in memoryDb
   }
 }
 
@@ -840,7 +875,16 @@ export const localStore = {
       },
     });
 
-    return localStore.getBookingById(id);
+    const found = localStore.getBookingById(id);
+    if (found) return found;
+
+    return {
+      ...newBooking,
+      service: db.services.find((s) => s.id === newBooking.service_id),
+      address: db.addresses.find((a) => a.id === newBooking.address_id),
+      user: db.profiles.find((p) => p.id === newBooking.user_id),
+      items: db.booking_items.filter((bi) => bi.booking_id === id),
+    };
   },
   updateBookingStatus: (id: string, status: BookingStatus) => {
     const db = readDb();
